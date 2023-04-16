@@ -26,6 +26,7 @@ $('#btnSiguiente').click(function () {
             $('#btnAnterior').prop('disabled', false);
         }
         else{
+            swal('Acción exitosa', error, 'error');
             alert('Seleccione un tipo de usuario');
         } 
     }
@@ -56,7 +57,7 @@ $('#formRegistrar').submit( function () {
     let error = "";
     if ((txtNombres.length >= 3 && txtNombres.length <= 50) && (txtApellidos.length >= 7 && txtApellidos.length <= 50) && 
         (txtCorreo.length >= 6 && txtCorreo.length <= 100) && (txtTelefono.length >= 10) && (sTipo != 0) &&
-        (txtClave.length >= 8 && txtClave <= 20)){
+        (txtClave.length >= 8 && txtClave.length <= 20)){
             if(sTipo == "Cliente"){
                 $.when(
                     $.ajax({
@@ -67,9 +68,9 @@ $('#formRegistrar').submit( function () {
                     success: function(response)
                     {
                         if(response != 0)
-                            alert(response);
+                            swal('Acción exitosa', response, 'success');
                         else
-                            alert("Ocurrio un error inesperado");
+                            swal('Ocurrió un error', "Ocurrió un error inesperado.", 'error');
                         $("#formRegistrar")[0].reset();
                     },
                     error: function( jqXHR, textStatus, errorThrown ) {
@@ -99,14 +100,50 @@ $('#formRegistrar').submit( function () {
             else{
                 if((txtRazonSocial.length >= 3 && txtRazonSocial.length <= 70) && (txtCorreoEmpresa.length >= 6 && txtCorreoEmpresa.length <=100) &&
                     (txtTelefonoEmpresa.length >= 10)){
-                        
+                        $.when(
+                            $.ajax({
+                            type: "POST",
+                            url: $('#formRegistrar').attr('action'),
+                            data: $("#formRegistrar").serializeArray(),
+                            contentType: "application/x-www-form-urlencoded",
+                            success: function(response)
+                            {
+                                if(response != 0)
+                                    swal('Acción exitosa', response, 'success');
+                                else
+                                    swal('Ocurrió un error', "Ocurrió un error inesperado.", 'error');
+                                $("#formRegistrar")[0].reset();
+                            },
+                            error: function( jqXHR, textStatus, errorThrown ) {
+                                if (jqXHR.status === 0) {
+                                    console.log('Not connect: Verify Network.');
+                                } else if (jqXHR.status == 404) {
+                                    console.log('Requested page not found [404]');
+                                } else if (jqXHR.status == 500) {
+                                    console.log('Internal Server Error [500].');
+                                } else if (textStatus === 'parsererror') {
+                                    console.log('Requested JSON parse failed.');
+                                } else if (textStatus === 'timeout') {
+                                    console.log('Time out error.');
+                                } else if (textStatus === 'abort') {
+                                    console.log('Ajax request aborted.');
+                                } else {
+                                    console.log('Uncaught Error: ' + jqXHR.responseText);
+                                }
+                            }
+                        })
+                        ).done(
+                            function () {
+                                return false;
+                            }
+                        );
                     }
-                    else
-                        alert('Hay campos vacios en el formulario.');
+                else
+                    swal('Ocurrió un error', 'Hay campos vacios en el formulario.', 'error');
             }
     }
     else
-        alert('Hay campos vacios en el formulario.');
+        swal('Ocurrió un error', 'Hay campos vacios en el formulario.', 'error');
     return false;
     
 });

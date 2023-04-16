@@ -3,11 +3,11 @@
     Inicio
 @endsection
 @section('cuerpo')
-    <header class="clearfix">
+    <header class="clearfix border border-3 p-3 d-flex justify-content-around">
+        <h2 class="text-center mx-auto mt-0 w-25">Gestos de contactos</h2>
         <a href="{{route('login')}}">
-            <button class='btn bg-success bg-gradient text-white float-end mt-3 me-5' id='btnAbrirS'><strong>Iniciar sesion</strong></button>
+            <button class='btn bg-success bg-gradient text-white me-5' id='btnAbrirS'><strong>Iniciar sesion</strong></button>
         </a>
-        <h2 class="mx-auto mt-5 w-25">Gestos de contactos</h2>
     </header>
 <main>
 
@@ -16,16 +16,3 @@
 @section('scripts')
     <script src="js\index.js"></script>
 @endsection
-
-
-
-
-<?php
-/*
-session_start();
-if(isset($_SESSION['idUsuario'])){
-    header('Location:/Experimentos/Proyecto02-Clientify/vPrincipal.php');
-}
-require_once('./resources/php/clientifyApi.php');
-*/
-?>

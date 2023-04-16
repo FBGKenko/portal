@@ -3,7 +3,7 @@
     Perfil
 @endsection
 @section('cuerpo')
-    <header class="clearfix border p-2">
+    <header class="clearfix border border-3 p-2">
         <x-menu></x-menu>
     </header>
     <main class="col-7 mt-5 mx-auto bg-secondary bg-opacity-25 p-2">

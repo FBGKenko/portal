@@ -3,9 +3,9 @@
     Olvide contraseña
 @endsection
 @section('cuerpo')
-    <header class="clearfix border p-2">
-        <button id="btnInicio" name="{{route('index')}}" class='btn bg-success bg-gradient text-white float-end mt-3 me-5 fw-bold'>Inicio</button>
-        <button id="btnLogIn" name="{{route('login')}}" class='btn bg-success bg-gradient text-white float-end mt-3 me-5 fw-bold'>Iniciar sesión</button>
+    <header class="clearfix border border-3 p-3">
+        <button id="btnInicio" name="{{route('index')}}" class='btn bg-success bg-gradient text-white float-end me-5 fw-bold'>Inicio</button>
+        <button id="btnLogIn" name="{{route('login')}}" class='btn bg-success bg-gradient text-white float-end me-5 fw-bold'>Iniciar sesión</button>
     </header>
     <main>
         <article class="d-flex justify-content-center">

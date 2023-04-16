@@ -38,7 +38,7 @@ $("#formInfoPersonal").submit(function () {
             }
         }
         if(error != ""){
-            alert(error);
+            swal('Ocurrió un error', error, 'error');
             return false;
         }
         $.when(
@@ -50,7 +50,7 @@ $("#formInfoPersonal").submit(function () {
             success: function(response)
             {
                 if(response == 1){
-                    alert("Los cambios solicitados ya existen.");
+                    swal('Datos duplicados', "Los cambios solicitados ya existen.", 'info');
                 }
                 else{
                     if(nombres != "")
@@ -59,7 +59,7 @@ $("#formInfoPersonal").submit(function () {
                     $("#txtTelefono").val("");
                     $("#txtNombres").val("");
                     $("#txtApellidos").val("");
-                    alert("El cambio se ha realizado con exito.");
+                    swal('Acción exitosa', "El cambio se ha realizado con exito.", 'success');
                 }
             },
             error: function( jqXHR, textStatus, errorThrown ) {
@@ -88,7 +88,7 @@ $("#formInfoPersonal").submit(function () {
         ); 
     }
     else{
-        alert("Los campos requeridos estan en blanco. Debe de llenar al menos 1.");
+        swal('Ocurrió un error', "Los campos requeridos estan en blanco. Debe de llenar al menos 1.", 'error');
     }
     return false;        
 });
@@ -102,7 +102,7 @@ $('#cbPrivacidad').click(function () {
         contentType: "application/x-www-form-urlencoded",
         success: function(response)
         {
-            alert("Se han modificado la privacidad de sus datos.");
+            swal('Acción exitosa', "Se han modificado la privacidad de sus datos.", 'success');
         },
         error: function( jqXHR, textStatus, errorThrown ) {
             if (jqXHR.status === 0) {
@@ -161,7 +161,7 @@ $('#formCC').submit(function () {
                     console.log(response);
                     $('#txtContra1').val("");
                     $('#txtContra2').val("");
-                    alert("La contraseña se ha cambiado con exito.");
+                    swal('Acción exitosa', "La contraseña se ha cambiado con exito.", 'success');
                 },
                 error: function( jqXHR, textStatus, errorThrown ) {
                     if (jqXHR.status === 0) {
@@ -196,7 +196,7 @@ $('#formCC').submit(function () {
         error += 'La contraseña debe tener minimo 8 caracteres y max 20 caracteres.\n';
     }
     if(error != ""){
-        alert(error);
+        swal('Ocurrió un error', error, 'error');
     }
     return false;
 });

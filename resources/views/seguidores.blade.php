@@ -3,7 +3,7 @@
     Seguidores
 @endsection
 @section('cuerpo')
-    <header class="clearfix border p-2">
+    <header class="clearfix border border-3 p-2">
         <x-menu></x-menu>
     </header>
     <main>
