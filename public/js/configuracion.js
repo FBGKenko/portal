@@ -200,3 +200,7 @@ $('#formCC').submit(function () {
     }
     return false;
 });
+
+$('#btnPermisos').click(function (e) { 
+    window.location.href = ruta;
+});

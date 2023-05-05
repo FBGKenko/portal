@@ -5,6 +5,7 @@
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
             <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">&times;</button>
             <a href="{{route('perfil')}}" class="w3-bar-item w3-button">Perfil</a>
+            <a href="{{route('seguimiento')}}" class="w3-bar-item w3-button">Empresas</a>
                 @if(session('usuario')->tipo == "Dueño")
                     <a href="{{route('seguidores')}}" class="w3-bar-item w3-button">Seguidores</a>
                 @endif

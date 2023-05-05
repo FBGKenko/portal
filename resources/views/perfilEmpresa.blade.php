@@ -1,6 +1,6 @@
 @extends('plantillas.plantillaMain')
 @section('titulo')
-    Principal
+    Perfil de empresa
 @endsection
 @section('cuerpo')
 <header class="clearfix border border-3 p-2">
@@ -22,4 +22,3 @@
             }
     </script>
 @endsection
-

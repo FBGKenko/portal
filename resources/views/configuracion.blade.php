@@ -49,12 +49,17 @@
                 </label>
             </div>
             <div class="mt-3">
-                <input type="submit" id="btnCC" value="Cambiar contraseña" class="col-5 btn btn-primary fw-bold border border-dark">
+                <input type="submit" id="btnCC" value="Cambiar contraseña" class="col-6 btn btn-primary fw-bold border border-dark">
             </div>
         </form>
+        <div class="col-4 mx-auto text-center">
+            <h3 class="fw-bold">Configuración de permisos</h3>
+            <div class="mt-3">
+                <input class="col-5 btn btn-primary fw-bold border border-dark" type="button" id="btnPermisos" value="Administrar permisos" name="{{route('')}}">
+            </div>
+        </div>
         <!-- 
         BOTON PARA CAMBIAR AVISO DE PRIVACIDAD
-        -->
         <form action="{{route('config.privacidad')}}" class="mt-5 mx-auto col-5" method="GET" id="formCPrivacidad" name="formCPrivacidad">
             <h3 class="fw-bold text-center">Aviso de privacidad</h3>
             <label class="container col-7">Que las empresas tengan acceso a mis datos personales
@@ -66,7 +71,7 @@
                 <span class="checkmark mt-2"></span>
             </label>
         </form>
-        
+        -->
         
         <!--
         CAMBIAR CMODO OSCURO

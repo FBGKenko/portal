@@ -7,6 +7,7 @@ use App\Http\Controllers\perfilController;
 use App\Http\Controllers\principalController;
 use App\Http\Controllers\registrarController;
 use App\Http\Controllers\seguidoresController;
+use App\Http\Controllers\seguimientoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,7 @@ Route::get('/iniciar-sesion', [inicioSesionController::class, 'index'])->name('l
 Route::post('/iniciar-sesion', [inicioSesionController::class, 'autentificar'])->name('login.auth');
 
 Route::get('/principal', [principalController::class, 'index'])->name(('main'));
-Route::get('/dejar-seguir', [principalController::class, 'dejarSeguirEmpresa'])->name('mainUnFollow');
-Route::get('/seguir', [principalController::class, 'seguirEmpresa'])->name('mainFollow');
+
 
 Route::get('/configuracion', [configuracionController::class, 'index'])->name(('config'));
 Route::post('/configuracion', [configuracionController::class, 'cambiarInfo'])->name(('config.infoP'));
@@ -41,5 +41,9 @@ Route::get('/perfil', [perfilController::class, 'index'])->name(('perfil'));
 
 Route::get('/registrar', [registrarController::class, 'index'])->name(('reg'));
 Route::post('/registrar', [registrarController::class, 'registrar'])->name(('reg.proceso'));
+
+Route::get('/Empresas', [seguimientoController::class, 'index'])->name('seguimiento');
+Route::get('/dejar-seguir', [seguimientoController::class, 'dejarSeguirEmpresa'])->name('mainUnFollow');
+Route::get('/seguir', [seguimientoController::class, 'seguirEmpresa'])->name('mainFollow');
 
 Route::get('/seguidores', [seguidoresController::class, 'index'])->name(('seguidores'));
