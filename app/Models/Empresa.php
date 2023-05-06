@@ -75,4 +75,30 @@ class Empresa extends Model
         
         return $res->paginate(10);
     }
+
+    public static function countTodosLosSeguidores($idEmpresa, $razonSocial)   
+    {
+        $usuariosConf = DB::table('usuarios')
+        ->select('usuarios.id', 'correo', 'telefono', 'ultimaConexion', 'nombres', 'apellidos', 'tipo', 'cumpleanios', 'origen', 'datosPrivados')
+        ->join('configuracions', 'configuracions.usuario_id', '=', 'usuarios.id');
+
+        $seguidores = DB::table('empresa_usuario')
+        ->select('usuarios.id', 'correo', 'telefono', 'ultimaConexion', 'nombres', 'apellidos', 'tipo', 'cumpleanios', 'origen', 'datosPrivados')
+        ->joinSub($usuariosConf, 'usuarios', function ($join)
+        {
+            $join->on('empresa_usuario.usuario_id','=','usuarios.id');
+        })
+        ->where('empresa_id', '=', $idEmpresa)
+        ->where('datosPrivados', '=', 'N');
+
+        $clientesRegistrados = DB::table('usuarios')
+        ->select('usuarios.id', 'correo', 'telefono', 'ultimaConexion', 'nombres', 'apellidos', 'tipo', 'cumpleanios', 'origen', 'datosPrivados')
+        ->join('configuracions', 'configuracions.usuario_id', '=', 'usuarios.id')
+        ->where('origen', '=', $razonSocial);
+
+        $res = DB::table($clientesRegistrados)
+        ->union($seguidores);
+        
+        return count($res->get());
+    }
 }

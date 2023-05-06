@@ -9,11 +9,16 @@
     <main>
         <div class="d-flex justify-content-around">
             <h3><strong>Empresa: </strong>{{$empresa->razonSocial}}</h3>
-            @if(count($empresa->usuarios) > 0)
+            <div>
+                @if(count($empresa->usuarios) > 0)
                 <h3><strong>Seguidores: </strong>{{count($empresa->usuarios)}}</h3>
-            @else
+                @else
                 <h3><strong>Seguidores: </strong>0</h3>
-            @endif
+                @endif
+                <h3 class="ms-4"><strong>Observadores: </strong>{{$observadores}}</h3>
+                <h3 class="ms-4"><strong>Interesados: </strong>{{count($empresa->usuarios) - $observadores}}</h3>
+            </div>
+            <h3 class="col-2"><strong>Total afiliados a la comunidad: </strong>{{$futurosClientes}}</h3>
         </div>
             <table class="w-75 mx-auto mt-3 rounded rounded-3">
                 <tbody>
@@ -68,7 +73,7 @@
     </main>
 @endsection
 @section('scripts')
-    <script src="js\principal.js"></script>
+    <script src="/js/principal.js"></script>
     <script>
     function openLeftMenu() {
         document.getElementById("leftMenu").style.display = "block";

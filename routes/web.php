@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\configuracionController;
 use App\Http\Controllers\indexController;use App\Http\Controllers\inicioSesionController;
+use App\Http\Controllers\matrizPermisosController;
 use App\Http\Controllers\olvideContraController;
 use App\Http\Controllers\perfilController;
 use App\Http\Controllers\principalController;
@@ -47,3 +48,5 @@ Route::get('/dejar-seguir', [seguimientoController::class, 'dejarSeguirEmpresa']
 Route::get('/seguir', [seguimientoController::class, 'seguirEmpresa'])->name('mainFollow');
 
 Route::get('/seguidores', [seguidoresController::class, 'index'])->name(('seguidores'));
+
+Route::get('configuracion/matriz-permisos', [matrizPermisosController::class, 'index'])->name('permisos');

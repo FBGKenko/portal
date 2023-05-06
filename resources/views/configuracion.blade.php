@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="mt-3">
-                <input type="submit" id="btnCambiar" value="Cambiar información" class="col-5 btn btn-primary fw-bold border border-dark">
+                <input type="submit" id="btnCambiar" value="Cambiar información" class="col-auto btn btn-primary fw-bold border border-dark">
             </div>
         </form>
         <!-- 
@@ -49,13 +49,13 @@
                 </label>
             </div>
             <div class="mt-3">
-                <input type="submit" id="btnCC" value="Cambiar contraseña" class="col-6 btn btn-primary fw-bold border border-dark">
+                <input type="submit" id="btnCC" value="Cambiar contraseña" class="col-auto btn btn-primary fw-bold border border-dark">
             </div>
         </form>
         <div class="col-4 mx-auto text-center">
             <h3 class="fw-bold">Configuración de permisos</h3>
             <div class="mt-3">
-                <input class="col-5 btn btn-primary fw-bold border border-dark" type="button" id="btnPermisos" value="Administrar permisos" name="{{route('')}}">
+                <input class="col-auto btn btn-primary fw-bold border border-dark" type="button" id="btnPermisos" value="Administrar permisos" name="{{route('permisos')}}">
             </div>
         </div>
         <!-- 
@@ -86,8 +86,8 @@
    </main>
 @endsection
 @section('scripts')
-    <script src="js\principal.js"></script>
-    <script src="js\configuracion.js"></script>
+    <script src="/js/principal.js"></script>
+    <script src="/js/configuracion.js"></script>
     <script>
         function openLeftMenu() {
         document.getElementById("leftMenu").style.display = "block";

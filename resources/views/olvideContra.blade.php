@@ -23,7 +23,7 @@
     </footer>
 @endsection
 @section('scripts')
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="js\olvideContra.js"></script>
-    <script src="js\general\btnLogOut.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/olvideContra.js"></script>
+    <script src="/js/general/btnLogOut.js"></script>
 @endsection

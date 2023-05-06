@@ -202,5 +202,6 @@ $('#formCC').submit(function () {
 });
 
 $('#btnPermisos').click(function (e) { 
+    ruta = $('#btnPermisos').attr('name');
     window.location.href = ruta;
 });

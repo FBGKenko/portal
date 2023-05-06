@@ -88,6 +88,6 @@
     </footer>
 @endsection
 @section('scripts')
-    <script src="js\registrar.js"></script>
-    <script src="js\general\btnLogOut.js"></script>
+    <script src="/js/registrar.js"></script>
+    <script src="/js/general/btnLogOut.js"></script>
 @endsection

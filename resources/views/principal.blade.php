@@ -11,7 +11,7 @@
 </main>
 @endsection
 @section('scripts')
-    <script src="js\principal.js"></script>
+    <script src="/js/principal.js"></script>
         <script>
             function openLeftMenu() {
                 document.getElementById("leftMenu").style.display = "block";

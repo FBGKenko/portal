@@ -14,7 +14,7 @@
                 <input type="text" class="col-9 mb-3" placeholder="Correo" name="txtCorreo" id="txtCorreo" minlength="4" maxlength="50">
                 <input type="password" class="col-9 mb-3" placeholder="Contraseña" name="txtContra" id="txtContra" minlength="8" maxlength="20">
                 <div class="mx-auto">
-                    <label class="container col-6">Mostrar contraseña
+                    <label class="container col-6 text-white">Mostrar contraseña
                         <input type="checkbox" id="cbMostrarContra">
                         <span class="checkmark mt-1"></span>
                     </label>
@@ -36,8 +36,8 @@
     </footer>
 @endsection
 @section('scripts')
-    <script src="js\inicioSesion.js"></script>
-    <script src="js\general\btnLogOut.js"></script>
+    <script src="/js/inicioSesion.js"></script>
+    <script src="/js/general/btnLogOut.js"></script>
 @endsection
 
 

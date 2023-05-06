@@ -22,15 +22,15 @@
                     <td id="linkNoSeguir{{$i + 1}}" name="{{route('mainUnFollow')}}" class="py-4 text-center">{{$empresas[$i]->telefonoEmpresa}}</td>
                     <td class="py-4 text-center">{{$empresas[$i]->correoEmpresa}}</td>
                     <td class="py-4 text-center">{{$empresas[$i]->paginaWeb}}</td>
-                    @if ($empresas[$i]->status == 'siguiendo')
-                        <td class="py-3 text-center">
+                    <td class="py-3 text-center">
+                        <button id="btnPerfil{{$i + 1}}" class="btn bg-success bg-opacity-75 bg-gradient text-white" value="{{$empresas[$i]->id}}">ver perfil</button>
+                        @if ($empresas[$i]->status == 'siguiendo')
+
                             <button id="btnSeguir{{$i + 1}}" class="btn bg-success bg-gradient text-white" value="{{$empresas[$i]->id}}">Siguiendo</button>
-                        </td>             
-                    @else
-                        <td class="py-3 text-center">
+                        @else                          
                             <button id="btnSeguir{{$i + 1}}" class="btn bg-success bg-opacity-75 bg-gradient text-white" value="{{$empresas[$i]->id}}">Seguir</button>
-                        </td>                 
-                    @endif
+                        @endif
+                    </td>                 
                 </tr>   
             @endfor
             @if (count($empresas) == 0)
@@ -46,7 +46,7 @@
 </main>
 @endsection
 @section('scripts')
-    <script src="js\principal.js"></script>
+    <script src="/js/principal.js"></script>
         <script>
             function openLeftMenu() {
                 document.getElementById("leftMenu").style.display = "block";
