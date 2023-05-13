@@ -15,11 +15,15 @@ class Empresa extends Model
         return $this->belongsTo(Usuario::class);
     }
 
-
     public function usuarios()
     {
-        return $this->belongsToMany(Usuario::class);
+        return $this->belongsToMany(Usuario::class)->withPivot('datosPersonales', 'datosFiscales', 'datosDomicilio', 'datosBancarios');
     }
+    public function permiso()
+    {
+        return $this->hasMany(Permiso::class);
+    }
+
 
     public static function todasLasEmpresas($idUsuario, $page)
     {

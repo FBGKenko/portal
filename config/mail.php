@@ -43,6 +43,8 @@ return [
             'password' => env('MAIL_PASSWORD','uqcqcbskixlfuxho'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            //SITIOS QUE NO ACEPTAN SSL
+            'verify_peer' => false,
         ],
 
         'ses' => [

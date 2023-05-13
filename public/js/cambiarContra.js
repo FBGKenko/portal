@@ -1,3 +1,8 @@
+$(document).ready(function() {
+     
+});
+
+
 $('#formCC').submit(function () {
     var error = "";
     let contra1 = $('#txtContra1').val();
@@ -29,8 +34,35 @@ $('#formCC').submit(function () {
                     console.log(response);
                     $('#txtContra1').val("");
                     $('#txtContra2').val("");
-                    window.location.href = $('#btnCC').attr('name');
-                    swal('Acción exitosa', "La contraseña se ha cambiado con exito.", 'success');
+                    
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                          confirmButton: 'btn btn-success',
+                          cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                      })
+                      
+                      swalWithBootstrapButtons.fire({
+                        title: 'Exito',
+                        text: "Se ha cambiado la contraseña con exito",
+                        icon: 'success',
+                        confirmButtonText: 'Okey',
+                        reverseButtons: true
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = $('#btnCC').attr('name');
+                        } else if (
+                          /* Read more about handling dismissals below */
+                          result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                          swalWithBootstrapButtons.fire(
+                            'Cancelled',
+                            'Your imaginary file is safe :)',
+                            'error'
+                          )
+                        }
+                      })
                 },
                 error: function( jqXHR, textStatus, errorThrown ) {
                     if (jqXHR.status === 0) {
@@ -69,6 +101,7 @@ $('#formCC').submit(function () {
     }
     return false;
 });
+
 
 $('#cbMostrarContra').click(function () {
     if($('#txtContra1').attr('type') == "password"){

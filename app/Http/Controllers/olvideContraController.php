@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\olvideContraseniaMailable;
 use App\Models\Token;
 use App\Models\Usuario;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -27,10 +28,14 @@ class olvideContraController extends Controller
                     $token = new Token();
                     $token->token = $tokenActual;
                     $token->usuario_id = $usuario->id;
-                    //$token->save();
+                    $token->save();
                     
                     $correo = new olvideContraseniaMailable($token);
-                    Mail::to($r->txtCorreo)->send($correo);
+                    try {
+                        Mail::to($r->txtCorreo)->send($correo);
+                    } catch (Exception $e) {
+                        $a = 'Excepción capturada: '. $e->getMessage()."\n";
+                    }
                     return "Mensaje enviado";
                 }
             }

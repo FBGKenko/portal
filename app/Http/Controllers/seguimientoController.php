@@ -19,6 +19,7 @@ class seguimientoController extends Controller
     {
         //agregar a la tabla cliente-empresa el id usuario y en id empresa
         return Usuario::seguir(session('usuario')->id, $r->value);
+        
     }
 
 

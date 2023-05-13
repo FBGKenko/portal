@@ -8,7 +8,21 @@ $('#formPermisos').submit(function () {
         success: function(response)
         {
             console.log(response);
-            swal('Acción exitosa', "Se ha enviado el correo.", 'success');
+            if(response){
+              Swal.fire(
+                'Acción exitosa',
+                'Se han cambiado los permisos.',
+                'success'
+              );
+            }
+            else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Acción erronea',
+                text: 'Se han cambiado los permisos a la empresa.',
+                footer: 'Okey'
+              });
+            }
         },
         error: function( jqXHR, textStatus, errorThrown ) {
             if (jqXHR.status === 0) {

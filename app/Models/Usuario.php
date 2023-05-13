@@ -24,7 +24,7 @@ class Usuario extends Model
             $res .= $empresa->pivot->usuario_id;
         }
         */
-        return $this->belongsToMany(Empresa::class);
+        return $this->belongsToMany(Empresa::class)->withPivot('datosPersonales', 'datosFiscales', 'datosDomicilio', 'datosBancarios');
     }
 
     public function configuracion()
@@ -34,7 +34,7 @@ class Usuario extends Model
 
     public function permiso()
     {
-        return $this->hasOne(Permiso::class);
+        return $this->hasMany(Permiso::class);
     }
 
     public function token()
@@ -46,6 +46,7 @@ class Usuario extends Model
 
     public static function seguir($idUsuario, $idEmpresa)
     {
+        
         return DB::table('empresa_usuario')->insert([
             'usuario_id' => $idUsuario,
             'empresa_id' => $idEmpresa

@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('empresa_usuario', function (Blueprint $table) {
             $table->foreignId('usuario_id')->constrained();
             $table->foreignId('empresa_id')->constrained();
+            $table->boolean('datosPersonales')->default(false);
+            $table->boolean('datosFiscales')->default(false);
+            $table->boolean('datosDomicilio')->default(false);
+            $table->boolean('datosBancarios')->default(false);
             $table->timestamps();
             $table->index('usuario_id');
         });

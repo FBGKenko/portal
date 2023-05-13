@@ -25,13 +25,13 @@ class DatabaseSeeder extends Seeder
         for ($i=0; $i < $noEmpresas; $i++) { 
             //TIP: Has para childs, for para padres
             //Declarar dueños con configuracion
-            $dueño = Usuario::factory()->has(Configuracion::factory())->has(Permiso::factory())->create();  //Return Model object
+            $dueño = Usuario::factory()->has(Configuracion::factory())->create();  //Return Model object
             
             //Generar un numero de seguidores random entre un rango
             $noSeguidoresPorEmpresa = rand($noMinMaxSeguidosPorEmpresa[0], $noMinMaxSeguidosPorEmpresa[1]);
 
             //Declarar seguidores con configuracion y para usar como factory
-            $seguidores = Usuario::factory($noSeguidoresPorEmpresa)->has(Configuracion::factory())->has(Permiso::factory()); //Return factory object
+            $seguidores = Usuario::factory($noSeguidoresPorEmpresa)->has(Configuracion::factory()); //Return factory object
 
             //Declara la empresa
             Empresa::factory()->for(
@@ -43,14 +43,14 @@ class DatabaseSeeder extends Seeder
         }
         
         //Nuestros usuarios
-        $dueñoIngenia = Usuario::factory()->has(Configuracion::factory())->has(Permiso::factory())->create([
+        $dueñoIngenia = Usuario::factory()->has(Configuracion::factory())->create([
             "correo" => 'jesus.ruiz@ingeniasi.com',
             "nombres" => 'Jesus Belizario',
             "apellidos" => 'Ruiz Murillo',
             "tipo" => 'Dueño'
         ]);
 
-        Usuario::factory()->has(Configuracion::factory())->has(Permiso::factory())->create([
+        Usuario::factory()->has(Configuracion::factory())->create([
             "correo" => 'ana.alvarez@ingeniasi.com',
             "nombres" => 'Ana Cecilia',
             "apellidos" => 'Alvarez Ortega',
@@ -58,14 +58,14 @@ class DatabaseSeeder extends Seeder
             "origen" => 'IngeniaSI'
         ]);
 
-        Usuario::factory()->has(Configuracion::factory())->has(Permiso::factory())->create([
+        Usuario::factory()->has(Configuracion::factory())->create([
             "correo" => 'cuahutemoc.aguilar@ingeniasi.com',
             "nombres" => 'Cuautemoc',
             "apellidos" => 'Aguilar',
             "tipo" => 'Cliente',
         ]);
 
-        Usuario::factory()->has(Configuracion::factory())->has(Permiso::factory())->create([
+        Usuario::factory()->has(Configuracion::factory())->create([
             "correo" => 'emilio.mendoza@ingeniasi.com',
             "nombres" => 'Carlos Emilio',
             "apellidos" => 'Mendoza Sarmiento',
