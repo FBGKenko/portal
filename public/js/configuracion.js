@@ -20,7 +20,7 @@ $("#formInfoPersonal").submit(function () {
     let apellidos = $("#txtApellidos").val();
     let error = "";
 
-    if((correo.length >= 8 && correo.length <= 20) && (telefono.length >= 10) && (nombres.length >= 3 && nombres.length <= 50) &&
+    if((correo.length >= 8 && correo.length <= 100) || (telefono.length >= 10) || (nombres.length >= 3 && nombres.length <= 50) ||
         (apellidos.length >= 7 && apellidos.length <= 50)){
         if(telefono != ""){
             if(!$.isNumeric(telefono)){

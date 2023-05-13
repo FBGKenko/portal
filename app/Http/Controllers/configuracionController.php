@@ -50,7 +50,7 @@ class configuracionController extends Controller
         }
         if(isset($r->txtCorreo)){
             if($r->txtCorreo != session('usuario')->correo){
-                $correo = $r->correo;
+                $correo = $r->txtCorreo;
                 $cambio = true;
             }
             else{
@@ -62,7 +62,7 @@ class configuracionController extends Controller
         }
         if(isset($r->txtTelefono)){
             if($r->txtTelefono != session('usuario')->telefono){
-                $telefono = $r->telefono;
+                $telefono = $r->txtTelefono;
                 $cambio = true;
             }   
             else{
@@ -77,9 +77,8 @@ class configuracionController extends Controller
         $usuario->apellidos = $apellidos;
         $usuario->correo = $correo;
         $usuario->telefono = $telefono;
-
         $usuario->save();
-        session()->forget('usuario');
+        session()->flush();
         session(["usuario" => $usuario]);
 
         if($cambio)

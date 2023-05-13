@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\olvideContraseñaMailable;
+use App\Mail\olvideContraseniaMailable;
 use App\Models\Token;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -27,9 +27,9 @@ class olvideContraController extends Controller
                     $token = new Token();
                     $token->token = $tokenActual;
                     $token->usuario_id = $usuario->id;
-                    $token->save();
-                  
-                    $correo = new  olvideContraseñaMailable($token);
+                    //$token->save();
+                    
+                    $correo = new olvideContraseniaMailable($token);
                     Mail::to($r->txtCorreo)->send($correo);
                     return "Mensaje enviado";
                 }

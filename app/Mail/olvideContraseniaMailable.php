@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class olvideContraseñaMailable extends Mailable
+class olvideContraseniaMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -44,7 +44,7 @@ class olvideContraseñaMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.recuperarContraseña',
+            view: 'emails.recuperarContrasenia',
             with: [
                 'token' => $this->token->token,
             ],
