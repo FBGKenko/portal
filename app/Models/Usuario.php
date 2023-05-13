@@ -32,6 +32,16 @@ class Usuario extends Model
         return $this->hasOne(Configuracion::class);
     }
 
+    public function permiso()
+    {
+        return $this->hasOne(Permiso::class);
+    }
+
+    public function token()
+    {
+        return $this->hasOne(Token::class);
+    }
+
 
 
     public static function seguir($idUsuario, $idEmpresa)

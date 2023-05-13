@@ -15,4 +15,9 @@ class matrizPermisosController extends Controller
         
         return view('matrizPermisosDatos', compact('empresasSiguiendo'));
     }
+    public function cambiarPermiso(Request $r)
+    {
+        
+        return $r;
+    }
 }

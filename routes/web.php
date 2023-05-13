@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\cambiarContraseñaController;
 use App\Http\Controllers\configuracionController;
 use App\Http\Controllers\indexController;use App\Http\Controllers\inicioSesionController;
 use App\Http\Controllers\matrizPermisosController;
@@ -10,7 +11,8 @@ use App\Http\Controllers\registrarController;
 use App\Http\Controllers\seguidoresController;
 use App\Http\Controllers\seguimientoController;
 use Illuminate\Support\Facades\Route;
-
+use App\Mail\olvideContraseñaMailable;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +38,11 @@ Route::post('/configuracion', [configuracionController::class, 'cambiarInfo'])->
 Route::get('/configuracion-2', [configuracionController::class, 'cambiarPrivacidad'])->name(('config.privacidad'));
 Route::post('/configuracion-2', [configuracionController::class, 'cambiarContra'])->name(('config.cC'));
 
-Route::get('/olvide-mi-contraseña', [olvideContraController::class, 'index'])->name(('olvideC'));
+Route::get('/olvide-mi-contrasenia', [olvideContraController::class, 'index'])->name(('olvideC'));
+Route::post('olvide-mi-contrasenia', [olvideContraController::class, 'enviarCorreo'])->name('enviarCC');
+
+Route::get('/cambiando-contrasenia{token}', [cambiarContraseñaController::class, 'index'])->name('index.ccc');
+Route::post('/cambiando-contrasenia{token}', [cambiarContraseñaController::class, 'cambiarContra'])->name('CCC');
 
 Route::get('/perfil', [perfilController::class, 'index'])->name(('perfil'));
 
@@ -50,3 +56,4 @@ Route::get('/seguir', [seguimientoController::class, 'seguirEmpresa'])->name('ma
 Route::get('/seguidores', [seguidoresController::class, 'index'])->name(('seguidores'));
 
 Route::get('configuracion/matriz-permisos', [matrizPermisosController::class, 'index'])->name('permisos');
+Route::post('configuracion/matriz-permisos', [matrizPermisosController::class, 'cambiarPermiso'])->name('permisos.change');

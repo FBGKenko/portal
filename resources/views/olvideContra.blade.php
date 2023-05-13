@@ -9,8 +9,9 @@
     </header>
     <main>
         <article class="d-flex justify-content-center">
-            <form class="col-4 bg-secondary text-center rounded-3 mt-5 p-5 pt-3" id="formOlvide" method="POST">
-                <h3 class="fw-bold">OLVIDE MI CONTRASEÑA</h3>
+            <form class="col-4 bg-secondary text-center rounded-3 mt-5 p-5 pt-3" id="formOlvide" action="{{route('enviarCC')}}" method="POST">
+                @csrf
+                <h3 class="fw-bold text-white">OLVIDE MI CONTRASEÑA</h3>
                 <p class="text-center text-light">Le enviaremos un correo para restaurar su contraseña, ingrese su correo.</p>
                 <input class="col-9 mb-3" id="txtCorreo" name="txtCorreo" placeholder="Correo" type="text">
                 <div class="mt-3">
