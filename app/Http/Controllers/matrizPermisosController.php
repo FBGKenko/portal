@@ -13,7 +13,6 @@ class matrizPermisosController extends Controller
     {
         $usuario = Usuario::find(session('usuario')->id);
         $empresasSiguiendo = $usuario->empresas;
-        
         return view('matrizPermisosDatos', compact('empresasSiguiendo'));
     }
     public function cambiarPermiso(Request $r)

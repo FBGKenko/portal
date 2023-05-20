@@ -14,7 +14,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    @livewireStyles
     @yield('cuerpo')
     @yield('scripts')
+    @livewireScripts
 </body>
 </html>
