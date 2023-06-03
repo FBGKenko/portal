@@ -100,6 +100,7 @@ class configuracionController extends Controller
 
     public function cambiarPrivacidad(Request $r)
     {
+        return 1;  
         //buscar usuario, cambiar datos privados
         $configuracion = Configuracion::where('usuario_id', session('usuario')->id)->first();
         if($r->cbPrivacidad == "on"){
@@ -112,7 +113,5 @@ class configuracionController extends Controller
             $configuracion->save();
             return 2;//cambiar datos privados a Y
         }
-        
-
     }
 }
