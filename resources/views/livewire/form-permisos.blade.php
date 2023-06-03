@@ -1,6 +1,6 @@
 <div>
     <form id="formPermisos" method="POST" wire:submit.prevent="submit">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" wire:model.debounce.500ms="token"/>
+        @csrf
         <div class="col-9 mx-auto mt-3 d-flex">
             <span class="fs-4">Permitir a la empresa: </span>
             <select id="cBox" class="form-select w-25 form-select-lg mb-3 mx-3" aria-label=".form-select-lg example" 

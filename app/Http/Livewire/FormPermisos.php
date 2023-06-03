@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Empresa;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Livewire;
 
@@ -17,7 +18,7 @@ class FormPermisos extends Component
     public $datosBancarios = "";
     public $comboboxEmpresa = "";
     public $mensaje = "";
-
+    public $token;
     public function cargarPermisos($cambio)
     {
         $this->datosPersonales ="";
@@ -53,10 +54,12 @@ class FormPermisos extends Component
         
         $usuario = Usuario::find(session('usuario')->id);
         $this->mensaje = $usuario->empresas[0]->pivot;
-
+/*
         //PENDIENTE COMO OBTENER EL TOKEN MEDIANTE LIVEWIRE Y ENVIARLO POR ESTE REQUEST
+        
         $postdata = http_build_query(
             array(
+                '_token' => $this->token,
                 'usuario_id' => $usuario->id,
                 'empresa_id' => $usuario->empresas[intval($this->cambio) - 1]->id,
                 'cbPersonales' =>  $this->datosPersonales,
@@ -77,11 +80,27 @@ class FormPermisos extends Component
         $context  = stream_context_create($opts);
         
         $result = file_get_contents(route('permisos.change'), false, $context);
-        $this->mensaje = $result;
+        */
+        $result = Http::post(route('permisos.change'), [
+                '_token' => $this->token,
+                'usuario_id' => $usuario->id,
+                'empresa_id' => $usuario->empresas[intval($this->cambio) - 1]->id,
+                'cbPersonales' =>  $this->datosPersonales,
+                'cbFiscales' => $this->datosFiscales,
+                'cbDomicilio' => $this->datosDomicilio,
+                'cbBancarios' => $this->datosBancarios
+        ]);
+        if($result->successful()){
+            $this->mensaje = "ta bien";
+        }
+        else{
+            $this->mensaje = "ta mal";
+        }
     }
 
     public function mount($empresasSiguiendo)
     {
+        $this->token = csrf_token();
         $this->empresas = $empresasSiguiendo;
     }
 

@@ -17,6 +17,7 @@ class matrizPermisosController extends Controller
     }
     public function cambiarPermiso(Request $r)
     {
+        return 1;
         $cambiar = false;
         if($r->empresaSelect > 0){
             $empresa = Empresa::find($r->empresaSelect);
