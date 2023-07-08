@@ -10,7 +10,6 @@ use Livewire\Livewire;
 
 class FormPermisos extends Component
 {
-    public $cambio = "";
     public $empresas;
     public $datosPersonales = "";
     public $datosFiscales = "";
@@ -19,25 +18,42 @@ class FormPermisos extends Component
     public $comboboxEmpresa = "";
     public $mensaje = "";
     public $token;
-    public function cargarPermisos($cambio)
+    public $index = -1;
+
+    public function mount($empresasSiguiendo)
     {
+        $this->empresas = $empresasSiguiendo;
+    }
+
+    public function render()
+    {
+        return view('livewire.form-permisos');
+    }
+
+    public function updatedcomboboxEmpresa(){
         $this->datosPersonales ="";
         $this->datosFiscales ="";
         $this->datosDomicilio ="";
         $this->datosBancarios ="";
-        $this->cambio = $cambio;
         $usuario = Usuario::find(session('usuario')->id);
-        if($cambio > 0){
-            if($usuario->empresas[$cambio - 1]->pivot->datosPersonales == 1){
+        $this->index = -1;
+        for ($i=0; $i < count($usuario->empresas); $i++) { 
+            if($this->comboboxEmpresa == $usuario->empresas[$i]->id){
+                $this->index = $i;
+            }
+        }
+
+        if($i >= 0){
+            if($usuario->empresas[$this->index]->pivot->datosPersonales == 1){
                 $this->datosPersonales = 'checked';
             }
-            if($usuario->empresas[$cambio - 1]->pivot->datosFiscales == 1){
+            if($usuario->empresas[$this->index]->pivot->datosFiscales == 1){
                 $this->datosFiscales = 'checked';
             }
-            if($usuario->empresas[$cambio - 1]->pivot->datosDomicilio == 1){
+            if($usuario->empresas[$this->index]->pivot->datosDomicilio == 1){
                 $this->datosDomicilio = 'checked';
             }
-            if($usuario->empresas[$cambio - 1]->pivot->datosBancarios == 1){
+            if($usuario->empresas[$this->index]->pivot->datosBancarios == 1){
                 $this->datosBancarios = 'checked';
             }
         }
@@ -51,61 +67,33 @@ class FormPermisos extends Component
 
     public function submit()
     {
-        
-        $usuario = Usuario::find(session('usuario')->id);
-        $this->mensaje = $usuario->empresas[0]->pivot;
-/*
-        //PENDIENTE COMO OBTENER EL TOKEN MEDIANTE LIVEWIRE Y ENVIARLO POR ESTE REQUEST
-        
-        $postdata = http_build_query(
-            array(
-                '_token' => $this->token,
-                'usuario_id' => $usuario->id,
-                'empresa_id' => $usuario->empresas[intval($this->cambio) - 1]->id,
-                'cbPersonales' =>  $this->datosPersonales,
-                'cbFiscales' => $this->datosFiscales,
-                'cbDomicilio' => $this->datosDomicilio,
-                'cbBancarios' => $this->datosBancarios
-            )
-        );
-        
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        
-        $result = file_get_contents(route('permisos.change'), false, $context);
-        */
-        $result = Http::post(route('permisos.change'), [
-                '_token' => $this->token,
-                'usuario_id' => $usuario->id,
-                'empresa_id' => $usuario->empresas[intval($this->cambio) - 1]->id,
-                'cbPersonales' =>  $this->datosPersonales,
-                'cbFiscales' => $this->datosFiscales,
-                'cbDomicilio' => $this->datosDomicilio,
-                'cbBancarios' => $this->datosBancarios
-        ]);
-        if($result->successful()){
-            $this->mensaje = "ta bien";
+        if($this->index >= 0){
+            $usuario = Usuario::find(session('usuario')->id);
+            if($this->datosPersonales == 'checked'){
+                $usuario->empresas[$this->index]->pivot->datosPersonales = 1;
+            }
+            else{
+                $usuario->empresas[$this->index]->pivot->datosPersonales = 0;
+            }
+            if($this->datosFiscales == 'checked'){
+                $usuario->empresas[$this->index]->pivot->datosFiscales = 1;
+            }
+            else{
+                $usuario->empresas[$this->index]->pivot->datosFiscales = 0;
+            }
+            if($this->datosDomicilio == 'checked'){
+                $usuario->empresas[$this->index]->pivot->datosDomicilio = 1;
+            }
+            else{
+                $usuario->empresas[$this->index]->pivot->datosDomicilio = 0;
+            }
+            if($this->datosBancarios == 'checked'){
+                $usuario->empresas[$this->index]->pivot->datosBancarios = 1;
+            }
+            else{
+                $usuario->empresas[$this->index]->pivot->datosBancarios = 0;
+            }
+            $usuario->empresas[$this->index]->pivot->save();
         }
-        else{
-            $this->mensaje = "ta mal";
-        }
-    }
-
-    public function mount($empresasSiguiendo)
-    {
-        $this->token = csrf_token();
-        $this->empresas = $empresasSiguiendo;
-    }
-
-    public function render()
-    {
-        return view('livewire.form-permisos');
     }
 }

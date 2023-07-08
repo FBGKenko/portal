@@ -1,10 +1,9 @@
 <div>
-    <form id="formPermisos" method="POST" wire:submit.prevent="submit">
-        @csrf
+    <form id="formPermisos" method="GET" wire:submit.prevent="submit">
         <div class="col-9 mx-auto mt-3 d-flex">
             <span class="fs-4">Permitir a la empresa: </span>
             <select id="cBox" class="form-select w-25 form-select-lg mb-3 mx-3" aria-label=".form-select-lg example" 
-            name="empresaSelect" wire:change="cargarPermisos(document.getElementById('cBox').selectedIndex)" wire:model="comboboxEmpresa">
+            name="empresaSelect" wire:model="comboboxEmpresa">
                 <option selected value="0">Selecciona una empresa</option>
                 @foreach ($empresas as $e)
                     <option value="{{$e->id}}">{{$e->razonSocial}}</option>
@@ -35,8 +34,7 @@
                 </div>
             </div>
             <div class="text-center mt-5">
-                {{$mensaje}}
-                <input type="submit" class="col-auto btn btn-primary fw-bold border border-dark" id="btnPermisos" value="Cambiar permisos">
+                <button class="col-auto btn btn-primary fw-bold border border-dark">Cambiar permisos</button>
             </div>
         </div>
     </form>

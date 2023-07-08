@@ -7,8 +7,6 @@
     <x-menu></x-menu>
 </header>
 <main>
-
-    
     @livewire('form-permisos', ['empresasSiguiendo' => $empresasSiguiendo])
 </main>
 @endsection
