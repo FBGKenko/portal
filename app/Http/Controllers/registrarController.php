@@ -16,7 +16,6 @@ class registrarController extends Controller
 
     public function registrar(Request $r)
     {
-        
         if(Usuario::where('correo', $r->txtCorreo)->first() != NULL){
             return "El correo ya se encuentra registrado";
         }
@@ -52,14 +51,11 @@ class registrarController extends Controller
             $usuario->tipo = "Cliente";
             $usuario->save();
         }
-        else{
-            return 0;
-        }
         $conf = new Configuracion();
         $conf->usuario_id = Usuario::where('correo', $r->txtCorreo)->first()->id;
         $conf->modoOscuro = 'N';
         $conf->datosPrivados = 'N';
         $conf->save();
-        return "¡Ha sido registrado con exito!";
+        return 0;
     }
 }

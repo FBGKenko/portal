@@ -2,13 +2,14 @@ $(document).ready(function() {
     
 });
 
+
+
 $('#formInicio').submit( function () {  
     salida = false;
     var txtCorreo = $("#txtCorreo").val();
     var txtClave = $("#txtContra").val();
     let error = "";
-
-    console.log(txtClave);
+    botonCargardo(["#btnIniciar", "#btnRegistrar", "#linkOlvideContra", "#btnInicio"], true);
     if(txtCorreo != "" && txtClave != ""){
         var ruta = $('#formInicio').attr('action');
         $.when(
@@ -62,6 +63,7 @@ $('#formInicio').submit( function () {
                     window.location.href = ruta;
                 }
                 else{
+                    botonCargardo(["#btnIniciar", "#btnRegistrar", "#linkOlvideContra", "#btnInicio"], false);
                     return false;
                 }
             }
@@ -69,6 +71,7 @@ $('#formInicio').submit( function () {
     }
     else{
         swal('Ocurrió un error', 'Faltan campos por rellenar.', 'error');
+        botonCargardo(["#btnIniciar", "#btnRegistrar", "#linkOlvideContra", "#btnInicio"], false);
     }
     return false;
 });

@@ -36,10 +36,11 @@ class olvideContraController extends Controller
                     } catch (Exception $e) {
                         $a = 'Excepción capturada: '. $e->getMessage()."\n";
                     }
-                    return "Mensaje enviado";
+                    return 0;
                 }
             }
+            return "No hay un usuario registrado con este correo";
         }
-        return "Error";
+        return "El campo correo se encuentra vacio";
     }
 }

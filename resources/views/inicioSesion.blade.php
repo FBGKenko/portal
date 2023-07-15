@@ -25,7 +25,6 @@
                         <input type="button" id="btnRegistrar" value="Registrarse" class="col-7 btn btn-success fw-bold border border-dark mt-2">
                     </a>
                 </div>
-                <!-- EN PROCESO-->
                 <div class="container pt-2">
                     <a id="linkOlvideContra" href="{{route('olvideC')}}" class="text-white text-decoration-none">Olvide contraseña</a>
                 </div>

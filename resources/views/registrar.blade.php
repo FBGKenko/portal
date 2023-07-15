@@ -32,14 +32,14 @@
     
                     <label for="Tipo" class="d-block text-white fw-bold col-4">Tipo:</label>
                     <select class="col-9 mb-3" name="sTipo" id="sTipo">
-                        <option value="0">Seleccione un tipo</option>
+                        <option value="">Seleccione un tipo</option>
                         <option value="Cliente">Cliente</option>
                         <option value="Dueño">Dueño</option>
                     </select>
     
     
                 </div>
-                <div id="seccion2" class="visually-hidden">
+                <div id="seccion2">
                     <label for="Razon social" class="d-block text-white fw-bold col-4">Razon social:</label>
                     <input class="col-9 mb-3" id="txtRazonSocial" name="txtRazonSocial" placeholder="Razon social" type="text" maxlength="70">
     
@@ -53,7 +53,7 @@
                     <input class="col-9 mb-3" id="txtPaginaWeb" name="txtPaginaWeb" placeholder="Pagina web" type="text" maxlength="140">
                 </div>
 
-                <div id="seccion3" class="visually-hidden">
+                <div id="seccion3">
                     <label for="Contraseña" class="d-block text-white fw-bold col-4">contraseña:</label>
                     <input class="col-9 mb-3" id="txtClave" name="txtClave" placeholder="contraseña" type="password" minlength="8" maxlength="20">
     
@@ -66,10 +66,6 @@
                         </label>
                     </div>
                 </div>
-
-
-
-
 
                 <div class="mt-3">
                     <div id="btnsFinalizar" class="d-flex justify-content-around visually-hidden">
