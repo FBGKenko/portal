@@ -1,0 +1,12 @@
+Analisis
+	ver como funciona o funcionara el modulo.
+Diseño
+	Diseño de pantalla y funcionamiento del sistema.
+Codificación
+	Hacerlo
+Pruebas
+	Poner  a prueba el codigo (Hacer catalogo de posibles errores)
+Implantacion	
+	Conexion con los modulos existentes
+
+

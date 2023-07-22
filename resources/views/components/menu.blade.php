@@ -14,5 +14,7 @@
         </div>
     </div>
     <h3 class="mx-auto fw-bold" id="welcome">Bienvenido: {{session('usuario')->nombres}}</h3>
-    <button class='btn bg-danger bg-gradient text-white float-end mt-3' id='btnCerrarS' name="{{route('mainLogout')}}"><strong>Cerrar sesión</strong></button>
+    <button class='btn bg-danger bg-gradient text-white float-end mt-3' id='btnCerrarS' name="{{route('mainLogout')}}">
+        <strong>Cerrar sesión</strong>
+    </button>
 </div>
