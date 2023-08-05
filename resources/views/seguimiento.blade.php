@@ -23,21 +23,23 @@
                     <td class="py-4 text-center">{{$empresas[$i]->correoEmpresa}}</td>
                     <td class="py-4 text-center">{{$empresas[$i]->paginaWeb}}</td>
                     <td class="py-3 text-center">
-                        <button id="btnPerfil{{$i + 1}}" class="btn bg-success bg-opacity-75 bg-gradient text-white" value="{{$empresas[$i]->id}}">ver perfil</button>
+                        <a href="{{route('verEmpresaPerfil', $empresas[$i]->razonSocial)}}">
+                            <button id="btnPerfil{{$i + 1}}" class="btn bg-success bg-opacity-75 bg-gradient text-white" value="{{$empresas[$i]->id}}">ver perfil</button>
+                        </a>
                         @if ($empresas[$i]->status == 'siguiendo')
 
-                            <button id="btnSeguir{{$i + 1}}" class="btn bg-success bg-gradient text-white" value="{{$empresas[$i]->id}}">Siguiendo</button>
-                        @else                          
+                            <button id="btnSeguir{{$i + 1}}" class="btn bg-primary bg-gradient text-white" value="{{$empresas[$i]->id}}">Siguiendo</button>
+                        @else
                             <button id="btnSeguir{{$i + 1}}" class="btn bg-success bg-opacity-75 bg-gradient text-white" value="{{$empresas[$i]->id}}">Seguir</button>
                         @endif
-                    </td>                 
-                </tr>   
+                    </td>
+                </tr>
             @endfor
             @if (count($empresas) == 0)
                 <tr>
                     <td colspan=99>No hay empresas registradas.</td>
                 </tr>
-            @endif  
+            @endif
         </tbody>
     </table>
     <div class="d-flex justify-content-center">
@@ -47,14 +49,5 @@
 @endsection
 @section('scripts')
     <script src="/js/principal.js"></script>
-        <script>
-            function openLeftMenu() {
-                document.getElementById("leftMenu").style.display = "block";
-            }
-
-            function closeLeftMenu() {
-                document.getElementById("leftMenu").style.display = "none";
-            }
-    </script>
 @endsection
 

@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('razonSocial',70)->unique();
             $table->string('correoEmpresa', 100);
             $table->string('telefonoEmpresa',20);
-            $table->string('paginaWeb',140)->nullable();                                        
+            $table->string('mision');
+            $table->string('vision');
+            $table->string('paginaWeb',140)->nullable();
             $table->timestamps();
             $table->index("razonSocial");
         });

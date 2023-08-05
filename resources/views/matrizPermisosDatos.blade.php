@@ -13,13 +13,4 @@
 @section('scripts')
     <script src="/js/principal.js"></script>
     <script src="/js/matrizPermisos.js"></script>
-        <script>
-            function openLeftMenu() {
-                document.getElementById("leftMenu").style.display = "block";
-            }
-
-            function closeLeftMenu() {
-                document.getElementById("leftMenu").style.display = "none";
-            }
-    </script>
 @endsection

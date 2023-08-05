@@ -21,7 +21,7 @@
             <h3 class="ms-4"><span class="fw-bold">Correo:</span> {{session('usuario')->correo}}</h3>
             <h3 class="ms-4"><span class="fw-bold">Fecha de nacimiento:</span> {{session('usuario')->cumpleanios}}</h3>
         </div>
-        
+
         @isset($empresa)
             <h3 class="col-7 mx-auto mt-3 fw-bold">Datos de la empresa</h3>
             <div class="col-7 mx-auto bg-secondary bg-opacity-25 p-2">
@@ -75,20 +75,11 @@
             <h3 class="ms-4"><span class="fw-bold">Nombre completo registrado al banco:</span> {{session('usuario')->telefono}}</h3>
         </div>
 
-           
+
     </main>
     <footer>
     </footer>
 @endsection
 @section('scripts')
     <script src="/js/principal.js"></script>
-    <script>
-        function openLeftMenu() {
-        document.getElementById("leftMenu").style.display = "block";
-        }
-
-        function closeLeftMenu() {
-        document.getElementById("leftMenu").style.display = "none";
-        }
-    </script>
 @endsection

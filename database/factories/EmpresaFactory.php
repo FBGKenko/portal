@@ -21,7 +21,9 @@ class EmpresaFactory extends Factory
             'razonSocial' => fake()->company(),
             'correoEmpresa' => fake()->safeEmail(),
             'telefonoEmpresa' => fake()->phoneNumber(),
-            'paginaWeb' => fake()->safeEmailDomain()
+            'paginaWeb' => fake()->safeEmailDomain(),
+            'mision' => fake()->sentence(),
+            'vision' => fake()->sentence()
         ];
     }
 }

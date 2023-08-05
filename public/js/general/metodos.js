@@ -16,18 +16,18 @@ function botonCargardo(btns, desactivar){
 
 function sinErrores(campos, valores) {
     let errores = "";
-    for (let i = 0; i < campos.length; i++) {        
+    for (let i = 0; i < campos.length; i++) {
         errores += (valores[i] != "") ? "" : "El campo "+campos[i]+" se encuentra vacio.\n";
     }
     return errores;
 }
 
-function prueba() {  
+function prueba() {
         console.log("Conexion entre archivos");
 }
 
 //respuesta exitosa debe tener un parametro "response"
-function ajaxs(tipo, ruta, datos, respuestaExitosa) {  
+function ajaxs(tipo, ruta, datos, respuestaExitosa) {
     $.ajax({
         type: tipo,
         url: ruta,
@@ -52,4 +52,27 @@ function ajaxs(tipo, ruta, datos, respuestaExitosa) {
             }
         }
     })
+}
+
+function openLeftMenu() {
+    document.getElementById("leftMenu").style.display = "block";
+}
+
+function closeLeftMenu() {
+    document.getElementById("leftMenu").style.display = "none";
+}
+
+
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
 }

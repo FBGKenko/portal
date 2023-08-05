@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Configuracion;
 use App\Models\Empresa;
 use App\Models\Permiso;
+use App\Models\servicio;
 use App\Models\Usuario;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
@@ -22,26 +23,31 @@ class DatabaseSeeder extends Seeder
     {
         $noEmpresas = 50;
         $noMinMaxSeguidosPorEmpresa = [0, 20];
-        for ($i=0; $i < $noEmpresas; $i++) { 
+        for ($i=0; $i < $noEmpresas; $i++) {
             //TIP: Has para childs, for para padres
             //Declarar dueños con configuracion
             $dueño = Usuario::factory()->has(Configuracion::factory())->create();  //Return Model object
-            
+
             //Generar un numero de seguidores random entre un rango
             $noSeguidoresPorEmpresa = rand($noMinMaxSeguidosPorEmpresa[0], $noMinMaxSeguidosPorEmpresa[1]);
 
             //Declarar seguidores con configuracion y para usar como factory
             $seguidores = Usuario::factory($noSeguidoresPorEmpresa)->has(Configuracion::factory()); //Return factory object
 
+            $servicios = rand(0, 3);
+
+
             //Declara la empresa
             Empresa::factory()->for(
                 $dueño
             )->has(
                 $seguidores
+            )->has(
+                servicio::factory($servicios)
             )->create();
-            
+
         }
-        
+
         //Nuestros usuarios
         $dueñoIngenia = Usuario::factory()->has(Configuracion::factory())->create([
             "correo" => 'jesus.ruiz@ingeniasi.com',

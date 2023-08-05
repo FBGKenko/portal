@@ -6,6 +6,7 @@ use App\Http\Controllers\indexController;use App\Http\Controllers\inicioSesionCo
 use App\Http\Controllers\matrizPermisosController;
 use App\Http\Controllers\olvideContraController;
 use App\Http\Controllers\perfilController;
+use App\Http\Controllers\perfilEmpresaController;
 use App\Http\Controllers\principalController;
 use App\Http\Controllers\registrarController;
 use App\Http\Controllers\seguidoresController;
@@ -52,6 +53,8 @@ Route::post('/registrar', [registrarController::class, 'registrar'])->name(('reg
 Route::get('/Empresas', [seguimientoController::class, 'index'])->name('seguimiento');
 Route::get('/dejar-seguir', [seguimientoController::class, 'dejarSeguirEmpresa'])->name('mainUnFollow');
 Route::get('/seguir', [seguimientoController::class, 'seguirEmpresa'])->name('mainFollow');
+
+Route::get('/Empresas/ver-{razon}', [perfilEmpresaController::class, 'index'])->name('verEmpresaPerfil');
 
 Route::get('/seguidores', [seguidoresController::class, 'index'])->name(('seguidores'));
 

@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="/css/miEstilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/js/general/metodos.js"></script>
 </head>
 <body>
     @livewireStyles
     @yield('cuerpo')
-    <script src="/js/general/metodos.js"></script>
+
     @yield('scripts')
     @livewireScripts
 </body>
 </html>
+

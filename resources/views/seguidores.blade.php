@@ -41,7 +41,7 @@
                                 @else
                                     <td class="py-4 text-center">Seguidor</td>
                                 @endif
-                            </tr>    
+                            </tr>
                         @else
                             @if ($u->origen == $empresa->razonSocial)
                                 <tr class="border-bottom bg-danger bg-opacity-50">
@@ -56,7 +56,7 @@
                                     <td class="py-4 text-center">{{$u->correo}}</td>
                                     <td class="py-4 text-center">- - -</td>
                                     <td class="py-4 text-center">Cliente registrado</td>
-                                </tr>  
+                                </tr>
                             @endif
                         @endif
                     @endforeach
@@ -64,7 +64,7 @@
                         <tr>
                             <td colspan=99>No tienes ningun seguidor.</td>
                         </tr>
-                    @endif  
+                    @endif
             </tbody>
         </table>
         <div class="d-flex justify-content-center">
@@ -74,21 +74,13 @@
 @endsection
 @section('scripts')
     <script src="/js/principal.js"></script>
-    <script>
-    function openLeftMenu() {
-        document.getElementById("leftMenu").style.display = "block";
-    }
-
-    function closeLeftMenu() {
-        document.getElementById("leftMenu").style.display = "none";
-    }
     </script>
 @endsection
 
-    
 
 
-       
+
+
 
 </body>
 </html>

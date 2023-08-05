@@ -23,6 +23,9 @@ class Empresa extends Model
     {
         return $this->hasMany(Permiso::class);
     }
+    public function servicio(){
+        return $this->hasMany(servicio::class);
+    }
 
 
     public static function todasLasEmpresas($idUsuario, $page)
@@ -54,7 +57,7 @@ class Empresa extends Model
         return $res;
     }
 
-    public static function todosLosSeguidores($idEmpresa, $razonSocial)   
+    public static function todosLosSeguidores($idEmpresa, $razonSocial)
     {
         $usuariosConf = DB::table('usuarios')
         ->select('usuarios.id', 'correo', 'telefono', 'ultimaConexion', 'nombres', 'apellidos', 'tipo', 'cumpleanios', 'origen', 'datosPrivados')
@@ -76,11 +79,11 @@ class Empresa extends Model
 
         $res = DB::table($clientesRegistrados)
         ->union($seguidores);
-        
+
         return $res->paginate(10);
     }
 
-    public static function countTodosLosSeguidores($idEmpresa, $razonSocial)   
+    public static function countTodosLosSeguidores($idEmpresa, $razonSocial)
     {
         $usuariosConf = DB::table('usuarios')
         ->select('usuarios.id', 'correo', 'telefono', 'ultimaConexion', 'nombres', 'apellidos', 'tipo', 'cumpleanios', 'origen', 'datosPrivados')
@@ -102,7 +105,7 @@ class Empresa extends Model
 
         $res = DB::table($clientesRegistrados)
         ->union($seguidores);
-        
+
         return count($res->get());
     }
 }
