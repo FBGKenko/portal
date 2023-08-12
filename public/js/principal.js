@@ -3,9 +3,9 @@ $(document).ready(function() {
     for (let i = 0; i < botones.length; i++) {
         $('#' + botones[i].id).click(seguimiento);
     }
-}); 
+});
 
-$('#btnCerrarS').click(function () { 
+$('#btnCerrarS').click(function () {
     var ruta = "";
     $.when(
         $.ajax({
@@ -83,6 +83,8 @@ function seguimiento() {
         ).done(
             function () {
                 $('#' + idActual).addClass('bg-opacity-75');
+                $('#' + idActual).addClass('bg-success');
+                $('#' + idActual).removeClass('bg-primary');
                 $('#' + idActual).html('Seguir');
             }
         );
@@ -123,6 +125,8 @@ function seguimiento() {
         ).done(
             function () {
                 $('#' + idActual).removeClass('bg-opacity-75');
+                $('#' + idActual).removeClass('bg-success');
+                $('#' + idActual).addClass('bg-primary');
                 $('#' + idActual).html('Siguiendo');
             }
         );

@@ -6,7 +6,7 @@
     <header class="clearfix border border-3 p-2">
         <x-menu></x-menu>
     </header>
-    <main>
+    <main class="mb-5">
 
         <!--
         FORMULARIO CAMBIAR INFORMACION PERSONAL

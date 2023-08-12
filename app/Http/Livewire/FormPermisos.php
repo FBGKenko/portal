@@ -37,13 +37,13 @@ class FormPermisos extends Component
         $this->datosBancarios ="";
         $usuario = Usuario::find(session('usuario')->id);
         $this->index = -1;
-        for ($i=0; $i < count($usuario->empresas); $i++) { 
+        for ($i=0; $i < count($usuario->empresas); $i++) {
             if($this->comboboxEmpresa == $usuario->empresas[$i]->id){
                 $this->index = $i;
             }
         }
 
-        if($i >= 0){
+        if($this->index >= 0){
             if($usuario->empresas[$this->index]->pivot->datosPersonales == 1){
                 $this->datosPersonales = 'checked';
             }
@@ -94,6 +94,7 @@ class FormPermisos extends Component
                 $usuario->empresas[$this->index]->pivot->datosBancarios = 0;
             }
             $usuario->empresas[$this->index]->pivot->save();
+            $this->emit('mensajeExito');
         }
     }
 }

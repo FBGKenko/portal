@@ -2,7 +2,7 @@
     <form id="formPermisos" method="GET" wire:submit.prevent="submit">
         <div class="col-9 mx-auto mt-3 d-flex">
             <span class="fs-4">Permitir a la empresa: </span>
-            <select id="cBox" class="form-select w-25 form-select-lg mb-3 mx-3" aria-label=".form-select-lg example" 
+            <select id="cBox" class="form-select w-25 form-select-lg mb-3 mx-3" aria-label=".form-select-lg example"
             name="empresaSelect" wire:model="comboboxEmpresa">
                 <option selected value="0">Selecciona una empresa</option>
                 @foreach ($empresas as $e)
@@ -38,4 +38,11 @@
             </div>
         </div>
     </form>
-</div>  
+</div>
+@push('scripts')
+    <script>
+        Livewire.on('mensajeExito', () =>{
+            swal('Acción exitosa', "Nuevos permisos asignados", 'success');
+        });
+    </script>
+@endpush

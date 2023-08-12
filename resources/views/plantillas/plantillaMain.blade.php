@@ -17,8 +17,9 @@
     @livewireStyles
     @yield('cuerpo')
 
-    @yield('scripts')
     @livewireScripts
+    @yield('scripts')
+    @stack('scripts')
 </body>
 </html>
 
