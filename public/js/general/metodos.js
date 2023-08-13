@@ -77,7 +77,3 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 
-function esconderMostrar(seccion) {
-    seccion.slideToggle();
-}
-
