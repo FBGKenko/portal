@@ -3,6 +3,7 @@
 use App\Http\Controllers\cambiarContraseñaController;
 use App\Http\Controllers\configuracionController;
 use App\Http\Controllers\indexController;use App\Http\Controllers\inicioSesionController;
+use App\Http\Controllers\listaServiciosController;
 use App\Http\Controllers\matrizPermisosController;
 use App\Http\Controllers\olvideContraController;
 use App\Http\Controllers\perfilController;
@@ -57,6 +58,8 @@ Route::get('/seguir', [seguimientoController::class, 'seguirEmpresa'])->name('ma
 Route::get('/Empresas/ver-{razon}', [perfilEmpresaController::class, 'index'])->name('verEmpresaPerfil');
 
 Route::get('/seguidores', [seguidoresController::class, 'index'])->name(('seguidores'));
+
+Route::get('/servicios', [listaServiciosController::class, 'index'])->name('serviciosCliente');
 
 Route::get('configuracion/matriz-permisos', [matrizPermisosController::class, 'index'])->name('permisos');
 Route::post('configuracion/matriz-permisos', [matrizPermisosController::class, 'cambiarPermiso'])->name('permisos.change');

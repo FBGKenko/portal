@@ -2,15 +2,17 @@
     <div>
         <!-- Menu laretal -->
         <button class="btn bg-primary bg-gradient text-white fs-4" onclick="openLeftMenu()">&#9776;</button>
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
-            <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">&times;</button>
-            <a href="{{route('main')}}" class="w3-bar-item w3-button">Tablero</a>
-            <a href="{{route('perfil')}}" class="w3-bar-item w3-button">Perfil</a>
+        <div class="menuLateral" id="leftMenu">
+            <button onclick="closeLeftMenu()" class="d-block py-2 ps-3">&times;</button>
+            <a href="{{route('main')}}" class="d-block py-2 ps-3">Tablero</a>
+            <a href="{{route('perfil')}}" class="d-block py-2 ps-3">Perfil</a>
             @if(session('usuario')->tipo == "Dueño")
-                <a href="{{route('seguidores')}}" class="w3-bar-item w3-button">Seguidores</a>
+                <a href="{{route('seguidores')}}" class="d-block py-2 ps-3">Seguidores</a>
             @endif
-            <a href="{{route('seguimiento')}}" class="w3-bar-item w3-button">Temas de interés</a>
-            <a href="{{route('config')}}" class="w3-bar-item w3-button">Configuración</a>
+            <a href="{{route('seguimiento')}}" class="d-block py-2 ps-3">Temas de interés</a>
+            <a href="{{route('config')}}" class="d-block py-2 ps-3">Configuración</a>
+            <a href="{{route('serviciosCliente')}}" class="d-block py-2 ps-3">Servicios</a>
+
         </div>
     </div>
     <h3 class="mx-auto fw-bold" id="welcome">Bienvenido: {{session('usuario')->nombres}}</h3>

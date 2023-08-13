@@ -55,11 +55,11 @@ function ajaxs(tipo, ruta, datos, respuestaExitosa) {
 }
 
 function openLeftMenu() {
-    document.getElementById("leftMenu").style.display = "block";
+    $('#leftMenu').addClass('active');
 }
 
 function closeLeftMenu() {
-    document.getElementById("leftMenu").style.display = "none";
+    $('#leftMenu').removeClass('active');
 }
 
 
@@ -76,3 +76,8 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+function esconderMostrar(seccion) {
+    seccion.slideToggle();
+}
+

@@ -1,11 +1,6 @@
-@extends('plantillas.plantillaMain')
-@section('titulo')
-    Seguimiento
-@endsection
-@section('cuerpo')
-<header class="clearfix border border-3 p-2">
-    <x-menu></x-menu>
-</header>
+@extends('plantillas.PlantillaSession')
+@section('tituloSession', 'Seguimiento')
+@section('cuerpoSession')
 <main>
     <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
         <tbody>
@@ -47,7 +42,7 @@
     </div>
 </main>
 @endsection
-@section('scripts')
+@section('scriptsSession')
     <script src="/js/principal.js"></script>
 @endsection
 

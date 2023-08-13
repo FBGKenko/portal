@@ -12,14 +12,14 @@ class seguimientoController extends Controller
     {
         $page = 10;
         $empresas = Empresa::todasLasEmpresas(session('usuario')->id, $page);
-        return view('seguimiento', compact('empresas', 'page'));
+        return view('vistaSesion.seguimiento.seguimiento', compact('empresas', 'page'));
     }
 
     public function seguirEmpresa(Request $r)
     {
         //agregar a la tabla cliente-empresa el id usuario y en id empresa
         return Usuario::seguir(session('usuario')->id, $r->value);
-        
+
     }
 
 

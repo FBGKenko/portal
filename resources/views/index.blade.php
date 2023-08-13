@@ -1,7 +1,5 @@
 @extends('plantillas.plantillaMain')
-@section('titulo')
-    Inicio
-@endsection
+@section('titulo', 'Inicio')
 @section('cuerpo')
     <header class="clearfix border border-3 p-3 d-flex justify-content-around">
         <h2 class="text-center mx-auto mt-0 w-25">Gestor de afiliados

@@ -14,9 +14,9 @@ class seguidoresController extends Controller
         $seguidores = Empresa::todosLosSeguidores($empresa->id, $empresa->razonSocial);
         $interesados = Empresa::countTodosLosSeguidores($empresa->id, $empresa->razonSocial);
         $observadores = count($empresa->usuarios) - $interesados;
-        
+
         $futurosClientes = Usuario::all()->count();
 
-        return view('seguidores', compact('empresa', 'seguidores', 'futurosClientes', 'observadores'));
+        return view('vistaSesion.seguimiento.seguidores', compact('empresa', 'seguidores', 'futurosClientes', 'observadores'));
     }
 }

@@ -1,7 +1,5 @@
 @extends('plantillas.plantillaMain')
-@section('titulo')
-    Inicio sesión
-@endsection
+@section('titulo', 'Inicio sesión')
 @section('cuerpo')
     <header class="clearfix border border-3 p-3">
         <button id="btnInicio" name="{{route('index')}}" class='btn bg-success bg-gradient text-white

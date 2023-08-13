@@ -1,11 +1,6 @@
-@extends('plantillas.plantillaMain')
-@section('titulo')
-    Agregar servicio
-@endsection
-@section('cuerpo')
-    <header class="clearfix border border-3 p-2">
-        <x-menu></x-menu>
-    </header>
+@extends('plantillas.PlantillaSession')
+@section('tituloSession', 'Agregar servicio')
+@section('cuerpoSession')
     <main class="mb-5">
         <form action="">
             <h4>Nombre servicio</h4>
@@ -19,7 +14,7 @@
         </form>
    </main>
 @endsection
-@section('scripts')
+@section('scriptsSession')
     <script src="/js/principal.js"></script>
     <script src="/js/configuracion.js"></script>
 @endsection

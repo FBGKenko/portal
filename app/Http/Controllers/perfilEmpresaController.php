@@ -13,7 +13,7 @@ class perfilEmpresaController extends Controller
         $empresa = Empresa::where('razonSocial', $razon)->first();
         if($empresa){
             $servicios = servicio::where('empresa_id', $empresa->id)->get();
-            return view('perfilEmpresa', ['empresa' => $empresa, 'servicios' => $servicios]);
+            return view('vistaSesion.seguimiento.perfilEmpresa', ['empresa' => $empresa, 'servicios' => $servicios]);
         }
         else{
             abort(404);

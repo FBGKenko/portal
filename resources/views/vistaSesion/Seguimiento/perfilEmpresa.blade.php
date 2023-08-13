@@ -1,11 +1,6 @@
-@extends('plantillas.plantillaMain')
-@section('titulo')
-    Perfil de empresa
-@endsection
-@section('cuerpo')
-<header class="clearfix border border-3 p-2">
-    <x-menu></x-menu>
-</header>
+@extends('plantillas.PlantillaSession')
+@section('tituloSession', 'Perfil de empresa')
+@section('cuerpoSession')
 <main>
     <section class="col-8 mt-5 mx-auto">
         <div class="col-12 mx-auto bg-secondary bg-opacity-25 p-2 rounded-3">
@@ -63,6 +58,6 @@
     </section>
 </main>
 @endsection
-@section('scripts')
+@section('scriptsSession')
     <script src="/js/principal.js"></script>
 @endsection

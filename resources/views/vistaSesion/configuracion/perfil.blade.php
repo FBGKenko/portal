@@ -1,11 +1,6 @@
-@extends('plantillas.plantillaMain')
-@section('titulo')
-    Perfil
-@endsection
-@section('cuerpo')
-    <header class="clearfix border border-3 p-2">
-        <x-menu></x-menu>
-    </header>
+@extends('plantillas.PlantillaSession')
+@section('tituloSession', 'Perfil')
+@section('cuerpoSession')
     <div class="d-flex content-justify-center">
         <main class="col-12">
             <div class="col-10 mt-3 mx-auto d-flex justify-content-between">
@@ -91,6 +86,6 @@
     <footer>
     </footer>
 @endsection
-@section('scripts')
+@section('scriptsSession')
     <script src="/js/principal.js"></script>
 @endsection

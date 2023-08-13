@@ -1,11 +1,6 @@
-@extends('plantillas.plantillaMain')
-@section('titulo')
-    Configuración
-@endsection
-@section('cuerpo')
-    <header class="clearfix border border-3 p-2">
-        <x-menu></x-menu>
-    </header>
+@extends('plantillas.PlantillaSession')
+@section('tituloSession', 'Configuración')
+@section('cuerpoSession')
     <main class="mb-5">
 
         <!--
@@ -85,7 +80,7 @@
         -->
    </main>
 @endsection
-@section('scripts')
+@section('scriptsSession')
     <script src="/js/principal.js"></script>
     <script src="/js/configuracion.js"></script>
 @endsection

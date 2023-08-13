@@ -11,7 +11,7 @@ class configuracionController extends Controller
     public function index()
     {
         $config = Configuracion::where('usuario_id', session('usuario')->id)->first();
-        return view('configuracion', compact('config'));
+        return view('vistaSesion.configuracion.configuracion', compact('config'));
     }
 
     public function cambiarInfo(Request $r)
@@ -64,7 +64,7 @@ class configuracionController extends Controller
             if($r->txtTelefono != session('usuario')->telefono){
                 $telefono = $r->txtTelefono;
                 $cambio = true;
-            }   
+            }
             else{
                 $telefono = session('usuario')->telefono;
             }
@@ -72,7 +72,7 @@ class configuracionController extends Controller
         else{
             $telefono = session('usuario')->telefono;
         }
-        
+
         $usuario->nombres = $nombres;
         $usuario->apellidos = $apellidos;
         $usuario->correo = $correo;
@@ -100,7 +100,7 @@ class configuracionController extends Controller
 
     public function cambiarPrivacidad(Request $r)
     {
-        return 1;  
+        return 1;
         //buscar usuario, cambiar datos privados
         $configuracion = Configuracion::where('usuario_id', session('usuario')->id)->first();
         if($r->cbPrivacidad == "on"){

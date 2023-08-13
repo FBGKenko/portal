@@ -10,13 +10,13 @@ class inicioSesionController extends Controller
 {
     public function index()
     {
-        return view('inicioSesion');
+        return view('vistaLogin.inicioSesion');
     }
 
     public function autentificar(Request $r)
     {
         $usuario = Usuario::where('telefono', $r->txtCorreo)->orwhere('correo',$r->txtCorreo)->first();
-    
+
         if(isset($usuario)){
             //Contraseña es la correcta
             if(password_verify($r->txtContra, $usuario->clave)){
@@ -30,7 +30,7 @@ class inicioSesionController extends Controller
                 return route('main');
             }
             return 2;
-        }   
+        }
         return 1;
     }
 }

@@ -14,7 +14,7 @@ class olvideContraController extends Controller
 {
     public function index()
     {
-        return view('olvideContra');
+        return view('vistaLogin.olvideContra');
     }
 
     public function enviarCorreo(Request $r)
@@ -29,7 +29,7 @@ class olvideContraController extends Controller
                     $token->token = $tokenActual;
                     $token->usuario_id = $usuario->id;
                     $token->save();
-                    
+
                     $correo = new olvideContraseniaMailable($token);
                     try {
                         Mail::to($r->txtCorreo)->send($correo);

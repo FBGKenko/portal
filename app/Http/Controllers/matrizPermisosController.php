@@ -13,7 +13,7 @@ class matrizPermisosController extends Controller
     {
         $usuario = Usuario::find(session('usuario')->id);
         $empresasSiguiendo = $usuario->empresas;
-        return view('matrizPermisosDatos', compact('empresasSiguiendo'));
+        return view('vistaSesion.configuracion.matrizPermisosDatos', compact('empresasSiguiendo'));
     }
     public function cambiarPermiso(Request $r)
     {
@@ -28,7 +28,7 @@ class matrizPermisosController extends Controller
                 }
             }
             if(isset($r->cbDPersonal)){
-                $permisos->datosPersonales = true; 
+                $permisos->datosPersonales = true;
                 $cambiar = false;
             }
             if(isset($r->cbDFiscal)){

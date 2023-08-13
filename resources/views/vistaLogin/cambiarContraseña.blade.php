@@ -1,7 +1,5 @@
 @extends('plantillas.plantillaMain')
-@section('titulo')
-    Cambiar contraseña
-@endsection
+@section('titulo', 'Cambiar contraseña')
 @section('cuerpo')
     <header class="clearfix border border-3 p-3">
         <button id="btnInicio" name="{{route('index')}}" class='btn bg-success bg-gradient text-white float-end me-5 fw-bold'>Inicio</button>

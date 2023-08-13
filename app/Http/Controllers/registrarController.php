@@ -11,7 +11,7 @@ class registrarController extends Controller
 {
     public function index()
     {
-        return view('registrar');
+        return view('vistaLogin.registrar');
     }
 
     public function registrar(Request $r)
@@ -26,7 +26,7 @@ class registrarController extends Controller
         if($r->sTipo == "Dueño" && Empresa::where('razonSocial', $r->txtRazonSocial)->first() != NULL){
             return "La razon social ya se encuentra registrada";
         }
-    
+
 
         $usuario = new Usuario();
         $usuario->correo = $r->txtCorreo;

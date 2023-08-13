@@ -1,11 +1,6 @@
-@extends('plantillas.plantillaMain')
-@section('titulo')
-    Seguidores
-@endsection
-@section('cuerpo')
-    <header class="clearfix border border-3 p-2">
-        <x-menu></x-menu>
-    </header>
+@extends('plantillas.PlantillaSession')
+@section('tituloSession', 'Seguidores')
+@section('cuerpoSession')
     <main>
         <div class="d-flex justify-content-around">
             <h3><strong>Empresa: </strong>{{$empresa->razonSocial}}</h3>
@@ -72,15 +67,6 @@
         </div>
     </main>
 @endsection
-@section('scripts')
+@section('scriptsSession')
     <script src="/js/principal.js"></script>
-    </script>
 @endsection
-
-
-
-
-
-
-</body>
-</html>
