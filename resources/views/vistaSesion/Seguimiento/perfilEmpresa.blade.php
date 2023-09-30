@@ -22,7 +22,7 @@
         <article class="mt-5 bg-secondary bg-opacity-25 p-2 d-flex justify-content-between rounded-3">
             <div class="col-6">
                 @if (count($servicios))
-                <div class="tab d-flex justify-content-between">
+                    <div class="tab d-flex justify-content-between">
                         <h3 class="ms-4"><span class="fw-bold">Servicios:</span></h3>
                         <div class="buttons">
                             @foreach ($servicios as $servicio)
