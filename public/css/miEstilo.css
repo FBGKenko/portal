@@ -9,6 +9,7 @@
     padding: 0.4rem 0.8rem;
     background-color: white;
     box-shadow: none;
+    transition: all 0.5s ease;
 }
 
 .menuLateral button, .menuLateral a{
