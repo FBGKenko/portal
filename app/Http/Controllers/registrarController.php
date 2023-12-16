@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Configuracion;
 use App\Models\Empresa;
 use App\Models\Usuario;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class registrarController extends Controller
 {
@@ -17,45 +19,34 @@ class registrarController extends Controller
     public function registrar(Request $r)
     {
         if(Usuario::where('correo', $r->txtCorreo)->first() != NULL){
-            return "El correo ya se encuentra registrado";
+            return [0, "El correo ya se encuentra registrado"];
         }
         else if(Usuario::where('correo', $r->txtCorreo)->first() != NULL){
-            return "El telefono ya se encuentra registrado";
+            return [0, "El telefono ya se encuentra registrado"];
         }
 
-        if($r->sTipo == "Dueño" && Empresa::where('razonSocial', $r->txtRazonSocial)->first() != NULL){
-            return "La razon social ya se encuentra registrada";
-        }
-
-
-        $usuario = new Usuario();
-        $usuario->correo = $r->txtCorreo;
-        $usuario->telefono = $r->txtTelefono;
-        $usuario->clave = password_hash($r->txtClave, PASSWORD_DEFAULT);
-        $usuario->nombres = $r->txtNombres;
-        $usuario->apellidos = $r->txtApellidos;
-        $usuario->cumpleanios = $r->cumpleanios;
-        $usuario->origen = "Portal";
-        if($r->sTipo == "Dueño"){
-            $usuario->tipo = "Dueño";
+        try{
+            DB::beginTransaction();
+            $usuario = new Usuario();
+            $usuario->correo = $r->txtCorreo;
+            $usuario->telefono = $r->txtTelefono;
+            $usuario->clave = password_hash($r->txtClave, PASSWORD_DEFAULT);
+            $usuario->nombres = $r->txtNombres;
+            $usuario->apellidos = $r->txtApellidos;
+            $usuario->cumpleanios = $r->cumpleanios;
+            $usuario->origen = "Portal";
             $usuario->save();
-            $empresa = new Empresa();
-            $empresa->razonSocial = $r->txtRazonSocial;
-            $empresa->correoEmpresa = $r->txtCorreoEmpresa;
-            $empresa->telefonoEmpresa = $r->txtTelefonoEmpresa;
-            $empresa->paginaWeb = $r->txtPaginaWeb;
-            $empresa->usuario_id = Usuario::where('correo', $r->txtCorreo)->first()->id;
-            $empresa->save();
+            $conf = new Configuracion();
+            $conf->usuario_id = Usuario::where('correo', $r->txtCorreo)->first()->id;
+            $conf->datosPrivados = true;
+            $conf->save();
+            DB::commit();
+            return [1, 'Exito'];
         }
-        else if($r->sTipo == "Cliente"){
-            $usuario->tipo = "Cliente";
-            $usuario->save();
+        catch(Exception $e){
+            DB::rollBack();
+            return [0, 'Ocurrió un error de servidor.'];
         }
-        $conf = new Configuracion();
-        $conf->usuario_id = Usuario::where('correo', $r->txtCorreo)->first()->id;
-        $conf->modoOscuro = 'N';
-        $conf->datosPrivados = 'N';
-        $conf->save();
-        return 0;
+        return [0, 'Ocurrió un error de servidor.'];
     }
 }

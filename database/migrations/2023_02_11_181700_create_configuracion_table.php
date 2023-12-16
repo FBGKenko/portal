@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('configuracions', function (Blueprint $table) {
             $table->id();
             $table->foreignId("usuario_id")->constrained();
-            $table->enum("modoOscuro",['Y','N']);
-            $table->enum("datosPrivados",['Y','N']);
+            $table->boolean("datosPrivados");
             $table->timestamps();
-            
+
         });
     }
 

@@ -1,3 +1,17 @@
+function modoCargando(cargando){
+    if(cargando){
+        $('button #textoBoton').hide();
+        $('button .spinner-border').show();
+        $('button').prop('disabled', true);
+        $('body').css("cursor", "progress");
+    }
+    else{
+        $('button #textoBoton').show();
+        $('button .spinner-border').hide();
+        $('button').prop('disabled', false);
+        $('body').css("cursor", "default");
+    }
+}
 //Pasar un array de strings con los id de los botones, ejemplo ["#btnModificar","#btnHola"]
 function botonCargardo(btns, desactivar){
     btns.forEach(e => {
@@ -76,4 +90,12 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+$('#btnInicio').click(function () {
+    window.location.href = $(this).attr('name');
+});
+
+$('#btnLogIn').click(function () {
+    window.location.href = $(this).attr('name');
+});
 

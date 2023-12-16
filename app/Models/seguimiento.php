@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class seguimiento extends Model
 {
     use HasFactory;
+    //Un SEGUIMIENTO pertenece a un USUARIO
+    public function usuario(){
+        return $this->belongsTo(Usuario::class);
+    }
+    //Un SEGUIMIENTO pertenece a una EMPRESA
+    public function empresa(){
+        return $this->belongsTo(Empresa::class);
+    }
+    //Un SEGUIMIENTO tiene varios RELACION DE DATO
+    public function relacionDato(){
+        return $this->hasMany(relacionDato::class);
+    }
 }

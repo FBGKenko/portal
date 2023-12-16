@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('catalogo_datos', function (Blueprint $table) {
+        Schema::create('relacion_datos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('catalogo_dato_id')->constrained();
+            $table->foreignId('seguimiento_id')->constrained();
+            $table->boolean('compartido');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catalogo_datos');
+        Schema::dropIfExists('relacion_datos');
     }
 };

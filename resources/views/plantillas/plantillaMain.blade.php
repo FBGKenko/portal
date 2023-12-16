@@ -31,6 +31,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {{-- Libreria de scripts de tablas Jquery --}}
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>
+    {{-- Libreria de scripts boostrap --}}
+    <script src="/js/bootstrap.bundle.min.js"></script>
     {{-- Libreria de scripts personalizados --}}
     <script src="/js/general/metodos.js"></script>
     @yield('scripts')

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("usuario_id")->nullable()->constrained();
+            $table->foreignId("usuario_id")->constrained();
             $table->string('razonSocial',70)->unique();
             $table->string('correoEmpresa', 100);
             $table->string('telefonoEmpresa',20);
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('vision');
             $table->string('paginaWeb',140)->nullable();
             $table->timestamps();
-            $table->index("razonSocial");
         });
     }
 

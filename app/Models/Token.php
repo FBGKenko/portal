@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Token extends Model
 {
     use HasFactory;
-    public function usuario()
-    {
+    //Un TOKEN pertenece a un USUARIO
+    public function usuario(){
         return $this->belongsTo(Usuario::class);
     }
 }

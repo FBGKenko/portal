@@ -9,5 +9,6 @@
     @yield('cuerpoSession')
 @endsection
 @section('scripts')
+    <script src="/js/principal.js"></script>
     @yield('scriptsSession')
 @endsection

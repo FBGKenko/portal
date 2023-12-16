@@ -10,59 +10,28 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    public function empresa()
-    {
-        return $this->hasOne(Empresa::class);
+    //Un USUARIO puede tener varias EMPRESA
+    public function empresas(){
+        return $this->hasMany(Empresa::class);
     }
-
-    public function empresas()
-    {
-        /*  HOW TO USE
-        $user = Usuario::find(1);
-        $res = "";
-        foreach ($user->empresas as $empresa) {
-            $res .= $empresa->pivot->usuario_id;
-        }
-        */
-        return $this->belongsToMany(Empresa::class)->withPivot('datosPersonales', 'datosFiscales', 'datosDomicilio', 'datosBancarios');
+    //un USUARIO puede tener varios SEGUIMIENTOS
+    public function seguimientos(){
+        return $this->hasMany(seguimiento::class);
     }
-
-    public function configuracion()
-    {
+    //un USUARIO puede tener una CONFIGURACION
+    public function configuracion(){
         return $this->hasOne(Configuracion::class);
     }
-
-    public function permiso()
-    {
-        return $this->hasMany(Permiso::class);
-    }
-
-    public function token()
-    {
+    //un USUARIO puede tener un TOKEN
+    public function token(){
         return $this->hasOne(Token::class);
     }
-
-
-
-    public static function seguir($idUsuario, $idEmpresa)
-    {
-        
-        return DB::table('empresa_usuario')->insert([
-            'usuario_id' => $idUsuario,
-            'empresa_id' => $idEmpresa
-        ]);
+    //un USUARIO puede tener varios DATOS GUARDADOS
+    public function datosGuardados(){
+        return $this->hasMany(datoGuardado::class);
     }
-
-    public static function noSeguir($idUsuario, $idEmpresa)
-    {
-        return DB::table('empresa_usuario')->where([
-            ['usuario_id','=',$idUsuario],
-            ['empresa_id','=',$idEmpresa]
-        ])->delete();
-    }
-
-    public function sonDiferentes()
-    {
-        # code...
+    //un USUARIO puede tener varias SUPCRIPCIONES
+    public function suscripcionesServicios(){
+        return $this->hasMany(suscripcionServicio::class);
     }
 }

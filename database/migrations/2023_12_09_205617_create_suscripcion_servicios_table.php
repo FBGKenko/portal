@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dato_guardados', function (Blueprint $table) {
+        Schema::create('suscripcion_servicios', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('usuario_id')->constrained();
+            $table->foreignId('servicio_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dato_guardados');
+        Schema::dropIfExists('suscripcion_servicios');
     }
 };

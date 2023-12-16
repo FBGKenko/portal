@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('relacion_datos', function (Blueprint $table) {
+        Schema::create('dato_guardados', function (Blueprint $table) {
             $table->id();
+            $table->text('valor');
+            $table->foreignId('catalogo_dato_id')->constrained();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('relacion_datos');
+        Schema::dropIfExists('dato_guardados');
     }
 };

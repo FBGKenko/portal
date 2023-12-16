@@ -9,22 +9,18 @@ use Illuminate\Support\Facades\DB;
 class Empresa extends Model
 {
     use HasFactory;
-
+    //Una EMPRESA pertenece a un USUARIO
     public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }
-
-    public function usuarios()
-    {
-        return $this->belongsToMany(Usuario::class)->withPivot('datosPersonales', 'datosFiscales', 'datosDomicilio', 'datosBancarios');
-    }
-    public function permiso()
-    {
-        return $this->hasMany(Permiso::class);
-    }
+    //Una EMPRESA tiene varios SERVICIO
     public function servicio(){
         return $this->hasMany(servicio::class);
+    }
+    //Una EMPRESA tiene varios SEGUIMIENTOS
+    public function seguimientos(){
+        return $this->hasMany(seguimiento::class);
     }
 
 

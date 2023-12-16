@@ -86,6 +86,3 @@
     <footer>
     </footer>
 @endsection
-@section('scriptsSession')
-    <script src="/js/principal.js"></script>
-@endsection

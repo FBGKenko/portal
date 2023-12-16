@@ -16,12 +16,9 @@ return new class extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('empresa_id')->constrained();
-            $table->string('nombreServicio');
-            $table->string('descripcion');
-            $table->boolean('datosPersonales')->default(true);
-            $table->boolean('datosFiscales')->default(false);
-            $table->boolean('datosDomicilio')->default(false);
-            $table->boolean('datosBancarios')->default(false);
+            $table->string('nombre');
+            $table->text('descripcion');
+            $table->boolean('publico');
             $table->timestamps();
         });
     }

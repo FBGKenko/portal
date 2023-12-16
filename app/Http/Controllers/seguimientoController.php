@@ -10,9 +10,8 @@ class seguimientoController extends Controller
 {
     public function index()
     {
-        $page = 10;
-        $empresas = Empresa::todasLasEmpresas(session('usuario')->id, $page);
-        return view('vistaSesion.seguimiento.seguimiento', compact('empresas', 'page'));
+        $empresas = Empresa::get();
+        return view('vistaSesion.seguimiento.seguimiento', compact('empresas'));
     }
 
     public function seguirEmpresa(Request $r)

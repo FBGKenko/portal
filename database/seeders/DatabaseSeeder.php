@@ -21,32 +21,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $noEmpresas = 50;
-        $noMinMaxSeguidosPorEmpresa = [0, 20];
-        for ($i=0; $i < $noEmpresas; $i++) {
-            //TIP: Has para childs, for para padres
-            //Declarar dueños con configuracion
-            $dueño = Usuario::factory()->has(Configuracion::factory())->create();  //Return Model object
+        // $noEmpresas = 50;
+        // $noMinMaxSeguidosPorEmpresa = [0, 20];
+        // for ($i=0; $i < $noEmpresas; $i++) {
+        //     //TIP: Has para childs, for para padres
+        //     //Declarar dueños con configuracion
+        //     $dueño = Usuario::factory()->has(Configuracion::factory())->create();  //Return Model object
 
-            //Generar un numero de seguidores random entre un rango
-            $noSeguidoresPorEmpresa = rand($noMinMaxSeguidosPorEmpresa[0], $noMinMaxSeguidosPorEmpresa[1]);
+        //     //Generar un numero de seguidores random entre un rango
+        //     $noSeguidoresPorEmpresa = rand($noMinMaxSeguidosPorEmpresa[0], $noMinMaxSeguidosPorEmpresa[1]);
 
-            //Declarar seguidores con configuracion y para usar como factory
-            $seguidores = Usuario::factory($noSeguidoresPorEmpresa)->has(Configuracion::factory()); //Return factory object
+        //     //Declarar seguidores con configuracion y para usar como factory
+        //     $seguidores = Usuario::factory($noSeguidoresPorEmpresa)->has(Configuracion::factory()); //Return factory object
 
-            $servicios = rand(0, 3);
+        //     $servicios = rand(0, 3);
 
 
-            //Declara la empresa
-            Empresa::factory()->for(
-                $dueño
-            )->has(
-                $seguidores
-            )->has(
-                servicio::factory($servicios)
-            )->create();
+        //     //Declara la empresa
+        //     Empresa::factory()->for(
+        //         $dueño
+        //     )->has(
+        //         $seguidores
+        //     )->has(
+        //         servicio::factory($servicios)
+        //     )->create();
 
-        }
+        // }
 
         //Nuestros usuarios
         $dueñoIngenia = Usuario::factory()->has(Configuracion::factory())->create([
@@ -81,8 +81,6 @@ class DatabaseSeeder extends Seeder
 
         Empresa::factory()->for(
             $dueñoIngenia
-        )->has(
-            $seguidores
         )->create([
             'razonSocial' => 'IngeniaSI',
             'usuario_id' => $dueñoIngenia->id

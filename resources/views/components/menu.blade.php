@@ -6,13 +6,12 @@
             <button onclick="closeLeftMenu()" class="d-block py-2 ps-3">&times;</button>
             <a href="{{route('main')}}" class="d-block py-2 ps-3">Inicio</a>
             <a href="{{route('perfil')}}" class="d-block py-2 ps-3">Perfil</a>
-            @if(session('usuario')->tipo == "Dueño")
+            @if(count(session('usuario')->empresas) > 0)
                 <a href="{{route('seguidores')}}" class="d-block py-2 ps-3">Mi Comunidad</a>
             @endif
             <a href="{{route('seguimiento')}}" class="d-block py-2 ps-3">Negocios</a>
-            <a href="{{route('config')}}" class="d-block py-2 ps-3">Configuración</a>
             <a href="{{route('serviciosCliente')}}" class="d-block py-2 ps-3">Mis Servicios</a>
-
+            <a href="{{route('config')}}" class="d-block py-2 ps-3">Configuración</a>
         </div>
     </div>
     <h3 class="mx-auto fw-bold" id="welcome">Bienvenido: {{session('usuario')->nombres}}</h3>

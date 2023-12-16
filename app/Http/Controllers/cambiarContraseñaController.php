@@ -11,8 +11,13 @@ class cambiarContraseñaController extends Controller
     public function index($tokenC)
     {
         $token = Token::where('token', $tokenC)->first();
-        $usuario = $token->usuario;
-        return view('vistaLogin.cambiarContraseña', compact('token', 'usuario'));
+        if(isset($token)){
+            $usuario = $token->usuario;
+            return view('vistaLogin.cambiarContraseña', compact('token', 'usuario'));
+        }
+        else{
+            return abort(403);
+        }
     }
 
     public function cambiarContra(Request $r, $token)

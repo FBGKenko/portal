@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seguimientos', function (Blueprint $table) {
+        Schema::create('grupo_datos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seguimientos');
+        Schema::dropIfExists('grupo_datos');
     }
 };

@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('datos', function (Blueprint $table) {
+        Schema::create('catalogo_datos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
+            $table->foreignId('grupo_dato_id')->constrained();
+            $table->string('campoCampo');
+            $table->string('tipoDato');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('datos');
+        Schema::dropIfExists('catalogo_datos');
     }
 };

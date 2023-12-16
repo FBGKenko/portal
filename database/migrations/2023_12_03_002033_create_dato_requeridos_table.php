@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('dato_requeridos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('servicio_id')->constrained();
+            $table->foreignId('catalogo_dato_id')->constrained();
             $table->timestamps();
         });
     }
