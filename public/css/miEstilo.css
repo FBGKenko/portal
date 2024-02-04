@@ -12,6 +12,11 @@
     transition: all 0.5s ease;
 }
 
+.logoNegocio{
+    width: 200px;
+    height: 200px;
+}
+
 .menuLateral button, .menuLateral a{
     text-decoration: none;
     border: 0px;
@@ -157,4 +162,31 @@
 
 .listaEmpresas{
     list-style-type: none;
+}
+
+.contenedorNegocioHeader{
+    padding: 3rem 5rem 6rem 5rem;
+}
+
+.contenedoresDatosNegocio{
+position: relative;
+top: -4rem;
+
+}
+.fondoGrisClaro{
+    background-color: lightgray;
+}
+.menuBotonesServicios{
+    display: flex;
+    border-bottom: 2px solid black;
+}
+#map{
+    height: 300px;
+}
+.bannerPublicitario{
+    height: 400px;
+}
+.imgBannerPublicitario{
+    height: 100%;
+    width: 100%;
 }

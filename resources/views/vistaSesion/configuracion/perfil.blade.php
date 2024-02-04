@@ -1,88 +1,41 @@
 @extends('plantillas.PlantillaSession')
 @section('tituloSession', 'Perfil')
 @section('cuerpoSession')
-    <div class="d-flex content-justify-center">
-        <main class="col-12">
-            <div class="col-10 mt-3 mx-auto d-flex justify-content-between">
-                <h3 class="col-auto mt-0 mx-1 fw-bold">Datos personales</h3>
-                <label class="container col-auto mx-4">Activar
-                    <input type="checkbox" id="cbMostrarContra">
-                    <span class="checkmark mt-1"></span>
-                </label>
-            </div>
-            <div class="col-10 mx-auto bg-secondary bg-opacity-25 p-2">
-                <h3 class="ms-4"><span class="fw-bold">Nombre:</span> {{session('usuario')->nombres}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Apellidos:</span> {{session('usuario')->apellidos}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Telefono:</span> {{session('usuario')->telefono}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Correo:</span> {{session('usuario')->correo}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Fecha de nacimiento:</span> {{session('usuario')->cumpleanios}}</h3>
-            </div>
-
-            @isset($empresa)
-                <h3 class="col-10 mx-auto mt-3 fw-bold">Datos de la empresa</h3>
-                <div class="col-10 mx-auto bg-secondary bg-opacity-25 p-2">
-                    <article class="">
-                        <h3 class="ms-4"><span class="fw-bold">Razon social:</span> {{$empresa->razonSocial}}</h3>
-                        <h3 class="ms-4"><span class="fw-bold">Correo empresa:</span> {{$empresa->correoEmpresa}}</h3>
-                        <h3 class="ms-4"><span class="fw-bold">Telefono empresa:</span> {{$empresa->telefonoEmpresa}}</h3>
-                        <h3 class="ms-4"><span class="fw-bold">Pagina web:</span> {{$empresa->paginaWeb}}</h3>
-                    </article>
-                </div>
-            @endisset
-            <div class="col-10 mt-3 mx-auto d-flex justify-content-between">
-                <h3 class="col-auto mt-0 mx-1 fw-bold">Datos fiscales</h3>
-                <label class="container col-auto mx-4">Activar
-                    <input type="checkbox" id="cbMostrarContra">
-                    <span class="checkmark mt-1"></span>
-                </label>
-            </div>
-            <div class="col-10 mx-auto bg-secondary bg-opacity-25 p-2">
-                <h3 class="ms-4"><span class="fw-bold">RFC:</span> {{session('usuario')->nombres}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Tipo de persona:</span> {{session('usuario')->apellidos}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Domicilio fiscal:</span> {{session('usuario')->telefono}}</h3>
-            </div>
-            <div class="col-10 mt-3 mx-auto d-flex justify-content-between">
-                <h3 class="col-auto mt-0 mx-1 fw-bold">Datos de domicilio</h3>
-                <label class="container col-auto mx-4">Activar
-                    <input type="checkbox" id="cbMostrarContra">
-                    <span class="checkmark mt-1"></span>
-                </label>
-            </div>
-            <div class="col-10 mx-auto bg-secondary bg-opacity-25 p-2">
-                <h3 class="ms-4"><span class="fw-bold">Calle:</span> {{session('usuario')->nombres}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">No de exterior:</span> {{session('usuario')->apellidos}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Colonia:</span> {{session('usuario')->telefono}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Código postal:</span> {{session('usuario')->correo}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Ciudad:</span> {{session('usuario')->cumpleanios}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Estado:</span> {{session('usuario')->cumpleanios}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Referencia:</span> {{session('usuario')->cumpleanios}}</h3>
-            </div>
-            <div class="col-10 mt-3 mx-auto d-flex justify-content-between">
-                <h3 class="col-auto mt-0 mx-1 fw-bold">Datos bancarios</h3>
-                <label class="container col-auto mx-4">Activar
-                    <input type="checkbox" id="cbMostrarContra">
-                    <span class="checkmark mt-1"></span>
-                </label>
-            </div>
-            <div class="col-10 mx-auto bg-secondary bg-opacity-25 p-2 mb-4">
-                <h3 class="ms-4"><span class="fw-bold">Número de tarjeta:</span> {{session('usuario')->nombres}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Clabe:</span> {{session('usuario')->apellidos}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Banco:</span> {{session('usuario')->telefono}}</h3>
-                <h3 class="ms-4"><span class="fw-bold">Nombre completo registrado al banco:</span> {{session('usuario')->telefono}}</h3>
-            </div>
-        </main>
-        @if (session('usuario')->tipo == "Dueño")
-            <aside class="col-2">
-                <h3>Tus empresas:</h3>
-                <ul class="listaEmpresas">
-                    <li>Empresa 1</li>
-                    <li>Empresa 2</li>
-                    <li>Empresa 3</li>
-                    <li>Empresa 4</li>
-                </ul>
-            </aside>
-        @endif
+<main>
+    {{-- CONTENEDORES DE DATOS GENERALES --}}
+    <h4 class="col-10 mx-auto fs-3 fw-bold">Datos generales</h4>
+    <section class="col-10 mx-auto p-4 border border-dark border-2 rounded fondoGrisClaro">
+        <h4><span class="fw-bold">Nombre completo: </span>ejemplo aaa</h4>
+        <h4><span class="fw-bold">Correo: </span>ejemplo aaa</h4>
+        <h4><span class="fw-bold">Telefono: </span>ejemplo aaa</h4>
+        <h4><span class="fw-bold">Cumpleaños: </span>ejemplo aaa</h4>
+        <h4><span class="fw-bold">Edad: </span>ejemplo aaa</h4>
+    </section>
+    {{-- CONTENEDOR DE NUEVOS DATOS --}}
+    <h4 class="col-10 mx-auto fs-3 fw-bold">Datos adicionales</h4>
+    <section class="col-10 mx-auto mb-5 p-4 pt-1 border border-dark border-2 rounded fondoGrisClaro">
+        <div class="menuBotonesServicios">
+            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio1')">
+                <h4 class="fw-bold mx-2">Módulo datos 1</h4>
+            </a>
+            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio2')">
+                <h4 class="fw-bold mx-2">Módulo datos 2</h4>
+            </a>
+        </div>
+        <div id="servicio1" class="tabcontent contenedoVisibleServicios" style="display: block;">
+            <h4><span class="fw-bold">Dato 1: </span>Lorem ipsum dolor sit amet</h4>
+            <h4><span class="fw-bold">Dato 2: </span>Lorem ipsum dolor sit amet</h4>
+        </div>
+        <div id="servicio2" class="tabcontent contenedoVisibleServicios">
+            <h4><span class="fw-bold">Dato 3: </span>Lorem ipsum dolor sit amet</h4>
+            <h4><span class="fw-bold">Dato 4: </span>Lorem ipsum dolor sit amet</h4>
+        </div>
+    </section>
+    {{-- BOTONES DE CREAR UN NEGOCIO --}}
+    <div class="col-10 mx-auto">
+        <h4 class="fs-3 fw-bold">¿Tienes negocio y lo quieres registrar?</h4>
+        <button class="btn btn-primary my-3 fw-bold">Envianos tu solicitud</button>
+        <button class="btn btn-primary my-3 fw-bold">Mis Negocios</button>
     </div>
-    <footer>
-    </footer>
+</main>
 @endsection

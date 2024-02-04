@@ -1,57 +1,62 @@
 @extends('plantillas.PlantillaSession')
 @section('tituloSession', 'Agregar servicio')
 @section('cuerpoSession')
-    <main class="mb-5">
-        <section id="contenedorBuscador" class="col-10 mx-auto pt-3 d-flex justify-content-center">
-            <input type="text" name="" id="" class="col-6 me-3">
-            <input type="checkbox" name="" id="" class="mx-2">
-            <label for="">Buscar por empresa/Servicio</label>
-        </section>
-        <section id="misServicios" class="col-8 mx-auto my-5">
-            <h2 class="mb-0 fw-bold">Mis servicios</h2>
-            <Article>
-                <div class="contenedorEmpresaServicio">
-                    <h3>Nombre empresa:</h3>
-                </div>
-                <div class="contenidoServicios">
-                    <div class="d-flex justify-content-between">
-                        <div class="col-7">
-                            <h4 class="mt-0 fw-bold">Servicio:</h4>
-                            <h5 class="ms-5">Descripción:</h5>
-                            <div class="ms-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</div>
-                        </div>
-                        <button class="btn btn-primary align-self-start">Ver servicio</button>
-                    </div>
-                </div>
-            </Article>
-        </section>
-        <section id="ServiciosDisponibles" class="col-8 mx-auto my-5">
-            <h2 class="mb-0 fw-bold">Servicios disponibles</h2>
-            <Article>
-                <div class="contenedorEmpresaServicio">
-                    <h3>Nombre empresa:</h3>
-                </div>
-                <div class="contenidoServicios">
-                    <div class="d-flex justify-content-between">
-                        <div class="col-7">
-                            <h4 class="mt-0 fw-bold">Servicio:</h4>
-                            <h5 class="ms-5">Descripción:</h5>
-                            <div class="ms-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum.</div>
-                        </div>
-                        <button class="btn btn-danger align-self-start">Administrar permisos</button>
-                    </div>
-                </div>
-            </Article>
-        </section>
-   </main>
+<main class="col-10 mx-auto">
+    {{-- BUSCADOR DE SERVICIOS --}}
+    <article>
+        <h4 class="fs-3 fw-bold">Mis servicios contratados</h4>
+        <input id="buscadorMisSerevicios" type="text" class="form-control mb-1" placeholder="Buscar por nombre">
+    </article>
+    {{-- CONTENEDOR DE EMPRESAS --}}
+    <div class="d-flex empresasSuscripto">
+        <a href="#" class="tablinks">
+            <h4 class="fw-bold mx-2">Todos (3)</h4>
+        </a>
+        <a href="#" class="tablinks">
+            <h4 class="fw-bold mx-2">Empresa 1 (2)</h4>
+        </a>
+        <a href="#" class="tablinks">
+            <h4 class="fw-bold mx-2">Empresa 2 (1)</h4>
+        </a>
+    </div>
+    {{-- TABLA DE MIS SERVICIOS --}}
+    <table id="misServicios" class="w-100 bg-primary bg-opacity-50 mx-auto mt-3 rounded rounded-3">
+        <thead>
+            <tr class="bg-primary bg-opacity-75">
+                <th class="py-3 text-center">Empresa</th>
+                <th class="py-3 text-center">Servicio</th>
+                <th class="py-3 text-center">Descripción</th>
+                <th class="py-3 text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-bottom">
+                <td class="py-4 text-center fw-bold">Empresa 1</td>
+                <td class="py-4 text-center fw-bold">Servicio 1</td>
+                <td class="py-4 text-center">bbbb</td>
+                <td class="py-3 text-center">
+                    <button class="btn btn-primary fw-bold">Ver servicio</button>
+                </td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="py-4 text-center fw-bold">Empresa 1</td>
+                <td class="py-4 text-center fw-bold">Servicio 2</td>
+                <td class="py-4 text-center">bbbb</td>
+                <td class="py-3 text-center">
+                    <button class="btn btn-primary fw-bold">Ver servicio</button>
+                </td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="py-4 text-center fw-bold">Empresa 2</td>
+                <td class="py-4 text-center fw-bold">Servicio 3</td>
+                <td class="py-4 text-center">bbbb</td>
+                <td class="py-3 text-center">
+                    <button class="btn btn-primary fw-bold">Ver servicio</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
 @endsection
 @section('scriptsSession')
 
@@ -278,3 +283,64 @@
     </script>
 
 @endsection
+@push('scripts')
+    <script>
+        var tabla;
+        var empresaFiltrada = "todos";
+        //INICIALIZAR DATATABLA
+        $(document).ready(function () {
+            tabla = $('#misServicios').DataTable({
+                initComplete: function () {
+                    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+                        if(settings.nTable.id == "misServicios"){
+                            var buscador = $('#buscadorMisSerevicios').val().toUpperCase();
+                            var empresa = data[0].toUpperCase();
+                            var servicio = data[1].toUpperCase();
+                            if(empresaFiltrada.toUpperCase() == "TODOS"){
+                                if(buscador.length == 0){
+                                    return true;
+                                }
+                                if(servicio.includes(buscador)){
+                                    return true;
+                                }
+                                else{
+                                    return false;
+                                }
+                            }
+                            else{
+                                if(empresaFiltrada.toUpperCase() == empresa && buscador.length == 0){
+                                    return true;
+                                }
+                                if(empresaFiltrada.toUpperCase() == empresa && servicio.includes(buscador)){
+                                    return true;
+                                }
+                                else{
+                                    return false;
+                                }
+                            }
+                        }
+                        else{
+                            return true;
+                        }
+                    });
+                },
+                "ordering": false,
+                "lengthChange": false,
+                "pageLength": 5,
+                "dom":"lrtip"
+            });
+        });
+        //REDIBUJAR TABLA AL ESCRIBIR EN UN BUSCADOR
+        $('#buscadorMisSerevicios').keyup(function (e) {
+            tabla.draw();
+        });
+        //REDIBUJAR TABLA AL ESCRIBIR EN UN BUSCADOR
+        $('.empresasSuscripto a').click(function(e) {
+            let titulo = $(this).children().text().split("(");
+            empresaFiltrada = titulo[0].trim();
+            tabla.draw();
+        });
+    </script>
+@endpush
+
+

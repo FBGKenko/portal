@@ -4,7 +4,7 @@
 <main>
     <section class="col-10 mx-auto mt-3">
         <article>
-            <h4 class="fw-bold">Negocios de la comunidad</h4>
+            <h4 class="fs-3 fw-bold">Negocios de la comunidad</h4>
             <input id="buscadorEmpresa" type="text" class="form-control mb-5" placeholder="Buscar por nombre">
         </article>
         <table id="empresas" class="w-100 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
@@ -62,6 +62,7 @@
                         }
                     });
                 },
+                "ordering": false,
                 "lengthChange": false,
                 "pageLength": 5,
                 "dom":"lrtip"
