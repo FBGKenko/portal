@@ -52,6 +52,8 @@ Route::middleware(['sesion'])->group(function (){
 
     Route::get('configuracion/matriz-permisos', [matrizPermisosController::class, 'index'])->name('permisos');
     Route::post('configuracion/matriz-permisos', [matrizPermisosController::class, 'cambiarPermiso'])->name('permisos.change');
+    Route::get('configuracion/matriz-permisos/getPermisos', [matrizPermisosController::class, 'obtenerPermisos'])->name('permisos.obtenerPermisos');
+    Route::post('configuracion/matriz-permisos/guardarPermiso', [matrizPermisosController::class, 'guardarPermisos'])->name('permisos.guardarPermiso');
 });
 
 Route::get('/panel-maestro', [dashboardAdminController::class, 'index'])->name(('panelmaestro.main'));

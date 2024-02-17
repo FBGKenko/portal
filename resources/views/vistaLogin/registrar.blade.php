@@ -115,10 +115,13 @@
                     success: function(response)
                     {
                         if(response[0] == 1){
-                            swal('Acción exitosa', "¡Ha sido registrado con exito!", 'success');
                             var ruta = $('#btnLogIn').attr('name');
                             $("#formRegistrar")[0].reset();
-                            window.location.href = ruta;//cambiar por el swal 2... como registrarEstado
+                            swal('Acción exitosa', "¡Ha sido registrado con exito!", 'success')
+                            .then((value) =>{
+                                window.location.href = ruta;
+                            });
+
                         }
                         else{
                             swal('Ocurrió un error', response[1], 'error');

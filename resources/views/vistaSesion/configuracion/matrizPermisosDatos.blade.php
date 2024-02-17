@@ -7,40 +7,36 @@
             <h4 class="fw-bold">Seleccione el <span class="fw-bold">negocio</span> para administrar los permisos:</h4>
             {{-- SELECT PARA ESCOGER UN NEGOCIO A GESTIONAR --}}
             <div class="d-flex justify-content-between">
-                <select name="" id="" class="form-control mb-3">
-                    <option value="">Seleccione un negocio</option>
+                <select name="listaEmpresas" id="listaEmpresas" class="form-select mb-3">
+                    <option value="-1">Seleccione una empresa</option>
+                    @foreach ($empresasSiguiendo as $empresa)
+                        <option value="{{$empresa->id}}">{{$empresa->empresa->razonSocial}}</option>
+                    @endforeach
                 </select>
-                <button class="btn btn-primary fw-bold">Guardar cambios</button>
+                <form id="formularioGuardarPermiso" action="{{route('permisos.guardarPermiso')}}" method="post">
+                    @csrf
+                    <button class="btn btn-primary fw-bold">Guardar cambios</button>
+                </form>
             </div>
             {{-- TABLA PARA GESTIONAR LOS PERMISOS --}}
             <table id="gestorPermisosDatos" class="w-100 bg-primary bg-opacity-50 mx-auto mt-3 rounded rounded-3">
                 <thead>
                     <tr class="bg-primary bg-opacity-75">
                         <th class="py-3 text-center">
-                            <input class="form-check-input fs-3" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input fs-3" type="checkbox" value="" id="compartirTodo">
                         </th>
                         <th class="py-3 text-center fw-bold">Modulo de datos</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-bottom">
-                        <td class="py-4 text-center">
-                            <input class="form-check-input fs-3" type="checkbox" value="" id="flexCheckDefault">
-                        </td>
-                        <td class="py-4 text-center fw-bold">Datos generales</td>
-                    </tr>
-                    <tr class="border-bottom">
-                        <td class="py-4 text-center">
-                            <input class="form-check-input fs-3" type="checkbox" value="" id="flexCheckDefault">
-                        </td>
-                        <td class="py-4 text-center fw-bold">Datos domicilio</td>
-                    </tr>
-                    <tr class="border-bottom">
-                        <td class="py-4 text-center">
-                            <input class="form-check-input fs-3" type="checkbox" value="" id="flexCheckDefault">
-                        </td>
-                        <td class="py-4 text-center fw-bold">Datos bancarios</td>
-                    </tr>
+                    @foreach ($moduloDatos as $modulo)
+                        <tr class="border-bottom">
+                            <td class="py-4 text-center">
+                                <input class="form-check-input fs-3" type="checkbox" value="" id="compartirModulo_{{$modulo->id}}">
+                            </td>
+                            <td class="py-4 text-center fw-bold">{{$modulo->nombre}}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </section>
@@ -49,6 +45,9 @@
 @push('scripts')
     <script>
         var tabla;
+        @if (session()->has('modalFlash'))
+            swal( "{{session('modalFlash')[1]}}", "{{session('modalFlash')[0]}}", "{{session('modalFlash')[2]}}");
+        @endif
         // INICIARLAR LA TABLA
         $(document).ready(function () {
             tabla = $('#gestorPermisosDatos').DataTable({
@@ -59,6 +58,70 @@
             });
         });
 
-        
+        $('#listaEmpresas').change(function (e) {
+            e.preventDefault();
+            $.when(
+                $.ajax({
+                    type: "GET",
+                    url: '{{route("permisos.obtenerPermisos")}}',
+                    data: [{name:'seguimientoId', value:$('#listaEmpresas').val()}],
+                    contentType: "application/x-www-form-urlencoded",
+                    success: function(response)
+                    {
+                        var checkboxs = $('[id^="compartirModulo_"]');
+                        console.log(response, checkboxs);
+
+
+                        // if(response[0] == 1){
+                        //     var ruta = $('#btnLogIn').attr('name');
+                        //     $("#formRegistrar")[0].reset();
+                        //     swal('Acción exitosa', "¡Ha sido registrado con exito!", 'success')
+                        //     .then((value) =>{
+                        //         window.location.href = ruta;
+                        //     });
+
+                        // }
+                        // else{
+                        //     swal('Ocurrió un error', response[1], 'error');
+                        //     return false;
+                        // }
+
+                    },
+                    error: function( jqXHR, textStatus, errorThrown ) {
+                        if (jqXHR.status === 0) {
+                            console.log('Not connect: Verify Network.');
+                        } else if (jqXHR.status == 404) {
+                            console.log('Requested page not found [404]');
+                        } else if (jqXHR.status == 500) {
+                            console.log('Internal Server Error [500].');
+                        } else if (textStatus === 'parsererror') {
+                            console.log('Requested JSON parse failed.');
+                        } else if (textStatus === 'timeout') {
+                            console.log('Time out error.');
+                        } else if (textStatus === 'abort') {
+                            console.log('Ajax request aborted.');
+                        } else {
+                            console.log('Uncaught Error: ' + jqXHR.responseText);
+                        }
+                    }
+            })
+            ).done(
+                function () {
+                    // botonCargardo(["#btnInicio", "#btnLogIn", "#btnAnterior2", "#btnRegistrarse"], false);
+                    return false;
+                }
+            );
+        });
+
+        $('#formularioGuardarPermiso').submit(function (e) {
+            var checkboxs = $('[id^="compartirModulo_"]');
+            var nombreValor = [];
+            $.each(checkboxs, function (indexInArray, valueOfElement) {
+                var inputFormulario = '<input type="hidden" name="'+$(valueOfElement).attr('id')+'" value="'+$(valueOfElement).is(':checked')+'">';
+                $('#formularioGuardarPermiso').append(inputFormulario);
+            });
+            var inputFormulario = '<input type="hidden" name="seguimientoId" value="'+$('#listaEmpresas').val()+'">';
+            $(this).append(inputFormulario);
+        });
     </script>
 @endpush

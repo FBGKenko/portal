@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class relacionDato extends Model
 {
     use HasFactory;
+    protected $fillable = ['catalogo_dato_id','seguimiento_id', 'compartido'];
     //Una RELACION DE DATO pertenece a un SEGUIMIENTO
     public function seguimiento(){
         return $this->belongsTo(seguimiento::class);
