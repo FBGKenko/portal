@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\cambiarContraseñaController;
 use App\Http\Controllers\configuracionController;
+use App\Http\Controllers\dashboardAdminController;
 use App\Http\Controllers\indexController;use App\Http\Controllers\inicioSesionController;
 use App\Http\Controllers\listaServiciosController;
 use App\Http\Controllers\matrizPermisosController;
@@ -43,6 +44,7 @@ Route::middleware(['sesion'])->group(function (){
     Route::get('/seguir', [seguimientoController::class, 'seguirEmpresa'])->name('mainFollow');
 
     Route::get('/Empresas/ver-{razon}', [perfilEmpresaController::class, 'index'])->name('verEmpresaPerfil');
+    Route::get('/Empresas/cambiandoEstado-{empresa}', [perfilEmpresaController::class, 'cambiarSeguirEmpresa'])->name('cambiarSeguirEmpresa');
 
     Route::get('/seguidores', [seguidoresController::class, 'index'])->name(('seguidores'));
 
@@ -51,6 +53,9 @@ Route::middleware(['sesion'])->group(function (){
     Route::get('configuracion/matriz-permisos', [matrizPermisosController::class, 'index'])->name('permisos');
     Route::post('configuracion/matriz-permisos', [matrizPermisosController::class, 'cambiarPermiso'])->name('permisos.change');
 });
+
+Route::get('/panel-maestro', [dashboardAdminController::class, 'index'])->name(('panelmaestro.main'));
+
 Route::get('/cerrando-sesion', [principalController::class, 'cerrarSesion'])->name('mainLogout');
 
 Route::get('/', [indexController::class, 'index'])->name('index');

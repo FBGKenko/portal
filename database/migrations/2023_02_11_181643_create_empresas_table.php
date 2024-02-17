@@ -17,11 +17,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId("usuario_id")->constrained();
             $table->string('razonSocial',70)->unique();
+            $table->string('giroNegocio');
+            $table->string('descripcion');
+            $table->string('direccion');
             $table->string('correoEmpresa', 100);
             $table->string('telefonoEmpresa',20);
             $table->string('mision');
             $table->string('vision');
             $table->string('paginaWeb',140)->nullable();
+            $table->string('latitud')->nullable();
+            $table->string('longitud')->nullable();
             $table->timestamps();
         });
     }

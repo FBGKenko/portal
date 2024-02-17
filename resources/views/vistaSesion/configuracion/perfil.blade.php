@@ -15,12 +15,14 @@
     <h4 class="col-10 mx-auto fs-3 fw-bold">Datos adicionales</h4>
     <section class="col-10 mx-auto mb-5 p-4 pt-1 border border-dark border-2 rounded fondoGrisClaro">
         <div class="menuBotonesServicios">
-            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio1')">
-                <h4 class="fw-bold mx-2">Módulo datos 1</h4>
-            </a>
-            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio2')">
-                <h4 class="fw-bold mx-2">Módulo datos 2</h4>
-            </a>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#" onclick="pestaniasServicios(event, 'servicio1')"><h4 class="fw-bold mx-2">Módulo datos 1</h4></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="pestaniasServicios(event, 'servicio2')"><h4 class="fw-bold mx-2">Módulo datos 2</h4></a>
+                </li>
+            </ul>
         </div>
         <div id="servicio1" class="tabcontent contenedoVisibleServicios" style="display: block;">
             <h4><span class="fw-bold">Dato 1: </span>Lorem ipsum dolor sit amet</h4>

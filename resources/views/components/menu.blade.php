@@ -12,10 +12,9 @@
             <a href="{{route('seguimiento')}}" class="d-block py-2 ps-3">Negocios</a>
             <a href="{{route('serviciosCliente')}}" class="d-block py-2 ps-3">Mis Servicios</a>
             <a href="{{route('config')}}" class="d-block py-2 ps-3">Configuración</a>
+            <a class='d-block py-2 ps-3 position-absolute' id='btnCerrarS' name="{{route('mainLogout')}}">Cerrar sesión</a>
         </div>
     </div>
     <h3 class="mx-auto fw-bold" id="welcome">Bienvenido: {{session('usuario')->nombres}}</h3>
-    <button class='btn bg-danger bg-gradient text-white float-end mt-3' id='btnCerrarS' name="{{route('mainLogout')}}">
-        <strong>Cerrar sesión</strong>
-    </button>
+    <div></div>
 </div>

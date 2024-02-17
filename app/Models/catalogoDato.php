@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class catalogoDato extends Model
 {
+    protected $fillable = ['grupo_dato_id','campoValor', 'tipoDato', 'opcional'];
     use HasFactory;
     //Un CATALOGO DE DATOS tiene muchas RELACION DE DATOS
     public function relacionDatos(){
@@ -18,7 +19,7 @@ class catalogoDato extends Model
     }
     //Un CATALOGO DE DATOS tiene muchas DATO REQUERIDO
     public function datosRequeridos(){
-        return $this->hasMany(datosRequeridos::class);
+        return $this->hasMany(datoRequerido::class);
     }
     //Un CATALOGO DE DATOS pertenece a un GRUPO DE DATOS
     public function grupoDato(){

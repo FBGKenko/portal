@@ -21,8 +21,8 @@
                         <td class="py-4 text-center fw-bold">{{$empresas[$i]->razonSocial}}</td>
                         <td class="py-4 text-center">{{$empresas[$i]->paginaWeb}}</td>
                         <td class="py-3 text-center">
-                            <a href="{{route('verEmpresaPerfil', $empresas[$i]->razonSocial)}}">
-                                <button id="btnPerfil{{$i + 1}}" class="btn bg-success bg-opacity-75 bg-gradient text-white" value="{{$empresas[$i]->id}}">ver perfil</button>
+                            <a href="{{route('verEmpresaPerfil', str_replace(' ', '-', $empresas[$i]->razonSocial))}}">
+                                <button id="btnPerfil{{$i + 1}}" class="btn bg-success bg-opacity-75 bg-gradient text-white">ver perfil</button>
                             </a>
                         </td>
                     </tr>

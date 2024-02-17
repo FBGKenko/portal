@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('catalogo_datos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('grupo_dato_id')->constrained();
-            $table->string('campoCampo');
+            $table->string('campoValor');
+            $table->boolean('opcional')->default(false);
             $table->string('tipoDato');
             $table->timestamps();
         });

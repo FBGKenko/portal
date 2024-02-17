@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class seguimiento extends Model
 {
+    protected $fillable = ['usuario_id', 'empresa_id'];
     use HasFactory;
     //Un SEGUIMIENTO pertenece a un USUARIO
     public function usuario(){

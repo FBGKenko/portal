@@ -190,3 +190,18 @@ top: -4rem;
     height: 100%;
     width: 100%;
 }
+
+.btnEditar{
+    height: 30px;
+    width: 30px;
+}
+
+.editarPerfil, .editarFondo{
+    bottom: 5px;
+    right: 5px;
+}
+
+#btnCerrarS{
+    cursor: pointer;
+    bottom: 2rem;
+}

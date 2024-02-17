@@ -22,6 +22,7 @@ return new class extends Migration
             $table->dateTime("ultimaConexion")->nullable();
             $table->string("nombres",50);
             $table->string("apellidos",50);
+            $table->string("tipo")->default("Cliente");
             $table->date("cumpleanios")->nullable();
             $table->string("origen",50)->nullable();
             $table->timestamps();

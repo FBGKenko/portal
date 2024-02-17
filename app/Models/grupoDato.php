@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class grupoDato extends Model
 {
+    protected $fillable = ['nombre'];
     use HasFactory;
     //Un GRUPO DE DATOS tiene varios DATOS
     public function catalogoDato(){

@@ -25,43 +25,72 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    {{-- SERIVICIOS FAVORITOS --}}
-    <section class="col-10 mx-auto mb-5 p-4 pt-1 border border-dark border-2 rounded fondoGrisClaro">
-        <div class="menuBotonesServicios">
-            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio1')">
-                <h4 class="fw-bold mx-2">Módulo datos 1</h4>
-            </a>
-            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio2')">
-                <h4 class="fw-bold mx-2">Módulo datos 2</h4>
-            </a>
-        </div>
-        <div id="servicio1" class="tabcontent contenedoVisibleServicios" style="display: block;">
-            <h4><span class="fw-bold">Dato 1: </span>Lorem ipsum dolor sit amet</h4>
-            <h4><span class="fw-bold">Dato 2: </span>Lorem ipsum dolor sit amet</h4>
-        </div>
-        <div id="servicio2" class="tabcontent contenedoVisibleServicios">
-            <h4><span class="fw-bold">Dato 3: </span>Lorem ipsum dolor sit amet</h4>
-            <h4><span class="fw-bold">Dato 4: </span>Lorem ipsum dolor sit amet</h4>
-        </div>
-    </section>
-    {{-- NOTIFICACIONES --}}
-    <section class="col-10 mx-auto mb-5 p-4 pt-1 border border-dark border-2 rounded fondoGrisClaro">
-        <div class="menuBotonesServicios">
-            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio1')">
-                <h4 class="fw-bold mx-2">Módulo datos 1</h4>
-            </a>
-            <a href="#" class="tablinks" onclick="pestaniasServicios(event, 'servicio2')">
-                <h4 class="fw-bold mx-2">Módulo datos 2</h4>
-            </a>
-        </div>
-        <div id="servicio1" class="tabcontent contenedoVisibleServicios" style="display: block;">
-            <h4><span class="fw-bold">Dato 1: </span>Lorem ipsum dolor sit amet</h4>
-            <h4><span class="fw-bold">Dato 2: </span>Lorem ipsum dolor sit amet</h4>
-        </div>
-        <div id="servicio2" class="tabcontent contenedoVisibleServicios">
-            <h4><span class="fw-bold">Dato 3: </span>Lorem ipsum dolor sit amet</h4>
-            <h4><span class="fw-bold">Dato 4: </span>Lorem ipsum dolor sit amet</h4>
-        </div>
-    </section>
+    <div class="col-10 mx-auto d-flex justify-content-between">
+        {{-- SERIVICIOS FAVORITOS --}}
+        <section class="col-5 mb-5 p-4 pt-1 border border-dark border-2 rounded fondoGrisClaro">
+            <h4 class="fs-3 fw-bold">Mis servicios favoritos</h4>
+            <table id="tablaServiciosFavoritos" class="w-100 bg-primary bg-opacity-50 mx-auto mt-3 rounded rounded-3">
+                <thead>
+                    <tr class="bg-primary bg-opacity-75">
+                        <th class="py-3 text-center fw-bold">Modulo de datos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-bottom">
+                        <td class="py-4 text-center fw-bold">Datos generales</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="py-4 text-center fw-bold">Datos domicilio</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="py-4 text-center fw-bold">Datos bancarios</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        {{-- NOTIFICACIONES --}}
+        <section class="col-5 mb-5 p-4 pt-1 border border-dark border-2 rounded fondoGrisClaro">
+            <h4 class="fs-3 fw-bold">Notificaciones</h4>
+            <table id="tablaNotificaciones" class="w-100 bg-primary bg-opacity-50 mx-auto mt-3 rounded rounded-3">
+                <thead>
+                    <tr class="bg-primary bg-opacity-75">
+                        <th class="py-3 text-center fw-bold">Modulo de datos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-bottom">
+                        <td class="py-4 text-center fw-bold">Datos generales</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="py-4 text-center fw-bold">Datos domicilio</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="py-4 text-center fw-bold">Datos bancarios</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
 </main>
 @endsection
+@push('scripts')
+    <script>
+        var tablaServiciosFavoritos;
+        var tablaNotificaciones;
+        // INICIARLAR LA TABLA
+        $(document).ready(function () {
+            tablaServiciosFavoritos = $('#tablaServiciosFavoritos').DataTable({
+                "ordering": false,
+                "lengthChange": false,
+                "pageLength": 10,
+                "dom":"lrtip"
+            });
+            tablaNotificaciones = $('#tablaNotificaciones').DataTable({
+                "ordering": false,
+                "lengthChange": false,
+                "pageLength": 10,
+                "dom":"lrtip"
+            });
+        });
+    </script>
+@endpush
