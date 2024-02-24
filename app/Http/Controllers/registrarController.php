@@ -21,7 +21,7 @@ class registrarController extends Controller
         if(Usuario::where('correo', $r->txtCorreo)->first() != NULL){
             return [0, "El correo ya se encuentra registrado"];
         }
-        else if(Usuario::where('correo', $r->txtCorreo)->first() != NULL){
+        else if(Usuario::where('telefono', $r->txtTelefono)->first() != NULL){
             return [0, "El telefono ya se encuentra registrado"];
         }
 
@@ -33,13 +33,11 @@ class registrarController extends Controller
             $usuario->clave = password_hash($r->txtClave, PASSWORD_DEFAULT);
             $usuario->nombres = $r->txtNombres;
             $usuario->apellidos = $r->txtApellidos;
-            $usuario->cumpleanios = $r->cumpleanios;
+            if(isset($r->cumpleanios)){
+                $usuario->cumpleanios = $r->cumpleanios;
+            }
             $usuario->origen = "Portal";
             $usuario->save();
-            $conf = new Configuracion();
-            $conf->usuario_id = Usuario::where('correo', $r->txtCorreo)->first()->id;
-            $conf->datosPrivados = true;
-            $conf->save();
             DB::commit();
             return [1, 'Exito'];
         }

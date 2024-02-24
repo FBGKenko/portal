@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\catalogoDato;
 use App\Models\Configuracion;
+use App\Models\grupoDato;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -10,8 +12,17 @@ class configuracionController extends Controller
 {
     public function index()
     {
+        $mensajeFlash = null;
+        if(session()->has('modalFlash')){
+            $mensajeFlash = session('modalFlash');
+        }
         $config = Configuracion::where('usuario_id', session('usuario')->id)->first();
-        return view('vistaSesion.configuracion.configuracion', compact('config'));
+        $catalogoDatos = catalogoDato::leftjoin('dato_guardados', 'catalogo_datos.id', '=', 'dato_guardados.catalogo_dato_id')
+        ->where('catalogo_datos.grupo_dato_id', '!=', 1)
+        ->get(['catalogo_datos.grupo_dato_id', 'catalogo_datos.id as catalogoDatoId', 'campoValor', 'valor', 'opcional']);
+        $grupos = grupoDato::where('id', '!=', 1)->get(['id', 'nombre']);
+        $gruposYCatalogos = [$grupos, $catalogoDatos];
+        return view('vistaSesion.configuracion.configuracion', compact('gruposYCatalogos', 'mensajeFlash'));
     }
 
     public function cambiarInfo(Request $r)
@@ -113,5 +124,10 @@ class configuracionController extends Controller
             $configuracion->save();
             return 2;//cambiar datos privados a Y
         }
+    }
+
+    public function cambiarModuloDatos(Request $r){
+        //GUARDAR EN LA BASE DE DATOS EN LA TABLA DATO GUARDADO CON EL USUARIO Y SU VALOR CON UN FOREACH
+        return $r;
     }
 }

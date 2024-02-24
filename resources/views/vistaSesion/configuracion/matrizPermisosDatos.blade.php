@@ -45,8 +45,8 @@
 @push('scripts')
     <script>
         var tabla;
-        @if (session()->has('modalFlash'))
-            swal( "{{session('modalFlash')[1]}}", "{{session('modalFlash')[0]}}", "{{session('modalFlash')[2]}}");
+        @if (isset($mensajeFlash))
+            swal( "{{$mensajeFlash[1]}}", "{{$mensajeFlash[0]}}", "{{$mensajeFlash[2]}}");
         @endif
         // INICIARLAR LA TABLA
         $(document).ready(function () {
@@ -68,24 +68,17 @@
                     contentType: "application/x-www-form-urlencoded",
                     success: function(response)
                     {
-                        var checkboxs = $('[id^="compartirModulo_"]');
-                        console.log(response, checkboxs);
-
-
-                        // if(response[0] == 1){
-                        //     var ruta = $('#btnLogIn').attr('name');
-                        //     $("#formRegistrar")[0].reset();
-                        //     swal('Acción exitosa', "¡Ha sido registrado con exito!", 'success')
-                        //     .then((value) =>{
-                        //         window.location.href = ruta;
-                        //     });
-
-                        // }
-                        // else{
-                        //     swal('Ocurrió un error', response[1], 'error');
-                        //     return false;
-                        // }
-
+                        var fullCompartido = true;
+                        $('[id^="compartirModulo_"]').prop('checked', false);
+                        response.forEach(e => {
+                            $('#compartirModulo_' + e.grupo_id).prop('checked', e.compartido);
+                            if(!e.compartido){
+                                fullCompartido = false;
+                            }
+                        });
+                        if(fullCompartido){
+                            $('#compartirTodo').prop('checked', true);
+                        }
                     },
                     error: function( jqXHR, textStatus, errorThrown ) {
                         if (jqXHR.status === 0) {
@@ -114,14 +107,24 @@
         });
 
         $('#formularioGuardarPermiso').submit(function (e) {
-            var checkboxs = $('[id^="compartirModulo_"]');
-            var nombreValor = [];
-            $.each(checkboxs, function (indexInArray, valueOfElement) {
-                var inputFormulario = '<input type="hidden" name="'+$(valueOfElement).attr('id')+'" value="'+$(valueOfElement).is(':checked')+'">';
-                $('#formularioGuardarPermiso').append(inputFormulario);
-            });
-            var inputFormulario = '<input type="hidden" name="seguimientoId" value="'+$('#listaEmpresas').val()+'">';
-            $(this).append(inputFormulario);
+            var empresaListaId = $('#listaEmpresas').val();
+            if(empresaListaId > 0){
+                var checkboxs = $('[id^="compartirModulo_"]');
+                var nombreValor = [];
+                $.each(checkboxs, function (indexInArray, valueOfElement) {
+                    var inputFormulario = '<input type="hidden" name="'+$(valueOfElement).attr('id')+'" value="'+$(valueOfElement).is(':checked')+'">';
+                    $('#formularioGuardarPermiso').append(inputFormulario);
+                });
+                var inputFormulario = '<input type="hidden" name="seguimientoId" value="'+$('#listaEmpresas').val()+'">';
+                $(this).append(inputFormulario);
+            }
+            else{
+                swal( "Primero debe seleccionar una empresa", "Atención", "warning");
+                return false;
+            }
+        });
+        $('#compartirTodo').click(function (e) {
+            $('[id^="compartirModulo_"]').prop('checked', $(this).is(':checked'));
         });
     </script>
 @endpush

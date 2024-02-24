@@ -18,6 +18,7 @@ class inicioSesionController extends Controller
         $usuario = Usuario::where('telefono', $r->txtCorreo)->orwhere('correo',$r->txtCorreo)->first();
         if(isset($usuario)){
             if(password_verify($r->txtContra, $usuario->clave)){
+                unset($usuario->clave);
                 session(["usuario" => $usuario]);
                 return route('main');
             }

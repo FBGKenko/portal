@@ -9,33 +9,40 @@ use App\Models\Permiso;
 use App\Models\relacionDato;
 use App\Models\seguimiento;
 use App\Models\Usuario;
+use Exception;
 use Illuminate\Http\Request;
 
 class matrizPermisosController extends Controller
 {
     public function index()
     {
+        $mensajeFlash = null;
         if(session()->has('modalFlash')){
-            session()->flash('modalFlash', session('modalFlash'));
+            $mensajeFlash = session('modalFlash');
         }
         $empresasSiguiendo = seguimiento::where('usuario_id', session('usuario')->id)->get();
         $moduloDatos = grupoDato::all();
 
 
-        return view('vistaSesion.configuracion.matrizPermisosDatos', compact('empresasSiguiendo', 'moduloDatos'));
+        return view('vistaSesion.configuracion.matrizPermisosDatos', compact('empresasSiguiendo', 'moduloDatos', 'mensajeFlash'));
     }
 
     public function obtenerPermisos(Request $r){
-        if($r->seguimientoId > 0){
-            $ModulosCompartidos = relacionDato::where('seguimiento_id', $r->seguimientoId)
-            ->join('catalogoDatos', 'relacionDatos.catalogo_dato_id', '=', 'catalogoDatos.id')
-            ->join('grupoDatos', 'catalogoDatos.grupo_id', '=', 'grupoDatos.id')
-            ->get();
+        try {
+            if($r->seguimientoId > 0){
+                $ModulosCompartidos = relacionDato::where('seguimiento_id', $r->seguimientoId)
+                ->join('catalogo_datos', 'relacion_datos.catalogo_dato_id', '=', 'catalogo_datos.id')
+                ->join('grupo_datos', 'catalogo_datos.grupo_dato_id', '=', 'grupo_datos.id')
+                ->distinct()
+                ->get(['grupo_datos.id as grupo_id', 'relacion_datos.compartido']);
 
-            return $ModulosCompartidos[0]->catalogoDato->grupoDato;
-        }
-        else{
-            return null;
+                return $ModulosCompartidos;
+            }
+            else{
+                return null;
+            }
+        } catch (Exception $e) {
+            return $e->getMessage() . ', '. $e->getLine();
         }
     }
 

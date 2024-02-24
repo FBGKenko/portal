@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\DB;
 class perfilEmpresaController extends Controller
 {
     public function index($razon){
+        $mensajeFlash = null;
         if(session()->has('modalFlash')){
-            session()->flash('modalFlash', session('modalFlash'));
+            $mensajeFlash = session('modalFlash');
         }
         $nombre =  str_replace('-', ' ', $razon);
         $empresa = Empresa::where('razonSocial', $nombre)->first();
@@ -25,7 +26,8 @@ class perfilEmpresaController extends Controller
             return view('vistaSesion.seguimiento.perfilEmpresa',
                 ['empresa' => $empresa,
                 'servicios' => $servicios,
-                'siguiendo' => $siguiendo
+                'siguiendo' => $siguiendo,
+                'mensajeFlash' => $mensajeFlash
             ]);
         }
         else{

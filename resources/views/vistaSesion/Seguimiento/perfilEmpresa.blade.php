@@ -100,8 +100,8 @@
 @endsection
 @push('scripts')
     <script>
-        @if (session()->has('modalFlash'))
-            swal( "{{session('modalFlash')[1]}}", "{{session('modalFlash')[0]}}", "{{session('modalFlash')[2]}}");
+        @if (isset($mensajeFlash))
+            swal( "{{$mensajeFlash[1]}}", "{{$mensajeFlash[0]}}", "{{$mensajeFlash[2]}}");
         @endif
         //INICIARLIZAR VISTA
         @if (isset($empresa->latitud))

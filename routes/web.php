@@ -30,6 +30,7 @@ Route::middleware(['sesion'])->group(function (){
     Route::get('/principal', [principalController::class, 'index'])->name(('main'));
 
     Route::get('/configuracion', [configuracionController::class, 'index'])->name(('config'));
+    Route::post('/configuracion/cambiar-datos', [configuracionController::class, 'cambiarModuloDatos'])->name(('config.cambiarModulo'));
     Route::post('/configuracion', [configuracionController::class, 'cambiarInfo'])->name(('config.infoP'));
     Route::get('/configuracion-2', [configuracionController::class, 'cambiarPrivacidad'])->name(('config.privacidad'));
     Route::post('/configuracion-2', [configuracionController::class, 'cambiarContra'])->name(('config.cC'));
