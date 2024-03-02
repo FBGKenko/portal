@@ -51,6 +51,9 @@
         // INICIARLAR LA TABLA
         $(document).ready(function () {
             tabla = $('#gestorPermisosDatos').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json',
+                },
                 "ordering": false,
                 "lengthChange": false,
                 "pageLength": 10,

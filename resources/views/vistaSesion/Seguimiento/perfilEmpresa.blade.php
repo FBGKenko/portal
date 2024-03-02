@@ -3,10 +3,11 @@
 @section('cuerpoSession')
 <main>
     {{-- HEADER PERFIL EMPRESA --}}
-    <section class="mx-auto bg-danger contenedorNegocioHeader d-flex justify-content-between">
+    <section class="mx-auto bg-danger contenedorNegocioHeader d-flex justify-content-between position-relative">
+        <img id="portadaNegocio" src="{{$urlEmpresa}}" alt="">
         {{-- LOGO NEGOCIO --}}
-        <article class="border border-dark border-2 rounded logoNegocio">
-
+        <article class="position-relative logoNegocio">
+            <img id="logoNegocio" src="{{$urlLogo}}" alt="">
         </article>
         {{-- BOTON DE SEGUIR PAGINA --}}
         <div>

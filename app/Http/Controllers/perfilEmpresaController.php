@@ -8,6 +8,7 @@ use App\Models\servicio;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class perfilEmpresaController extends Controller
 {
@@ -23,12 +24,19 @@ class perfilEmpresaController extends Controller
             $siguiendo = seguimiento::where('usuario_id', session('usuario')->id)
             ->where('empresa_id', $empresa->id)
             ->first();
+            $urlLogo = Storage::disk('public')->files('/empresas/empresa_'.$empresa->id . '/logo');
+            $urlEmpresa = Storage::disk('public')->files('/empresas/empresa_'.$empresa->id . '/portada');
+            $urlLogo = (count($urlLogo) > 0) ? '/storage/'.$urlLogo[0] : '';
+            $urlEmpresa = (count($urlEmpresa) > 0) ? '/storage/'.$urlEmpresa[0] : '';
             return view('vistaSesion.seguimiento.perfilEmpresa',
-                ['empresa' => $empresa,
-                'servicios' => $servicios,
-                'siguiendo' => $siguiendo,
-                'mensajeFlash' => $mensajeFlash
-            ]);
+            compact(
+                'empresa',
+                'servicios',
+                'siguiendo',
+                'mensajeFlash',
+                'urlLogo',
+                'urlEmpresa'
+            ));
         }
         else{
             abort(404);

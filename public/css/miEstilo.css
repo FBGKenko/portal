@@ -12,7 +12,7 @@
     transition: all 0.5s ease;
 }
 
-.logoNegocio{
+.logoNegocio, #logoNegocio{
     width: 200px;
     height: 200px;
 }
@@ -168,10 +168,16 @@
     padding: 3rem 5rem 6rem 5rem;
 }
 
+#portadaNegocio, #logoNegocio{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
 .contenedoresDatosNegocio{
-position: relative;
-top: -4rem;
-
+    position: relative;
+    top: -4rem;
 }
 .fondoGrisClaro{
     background-color: lightgray;
@@ -198,10 +204,16 @@ top: -4rem;
 
 .editarPerfil, .editarFondo{
     bottom: 5px;
+    right: 56px;
+}.editarPerfil2, .editarFondo2{
+    bottom: 5px;
     right: 5px;
 }
 
 #btnCerrarS{
     cursor: pointer;
     bottom: 2rem;
+}
+.nombreEmpresas{
+    z-index: 5;
 }

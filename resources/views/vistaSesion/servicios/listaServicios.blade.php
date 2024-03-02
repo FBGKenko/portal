@@ -67,6 +67,9 @@
         //INICIALIZAR DATATABLA
         $(document).ready(function () {
             tabla = $('#misServicios').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json',
+                },
                 initComplete: function () {
                     $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
                         if(settings.nTable.id == "misServicios"){

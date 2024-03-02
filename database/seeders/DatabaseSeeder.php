@@ -63,6 +63,13 @@ class DatabaseSeeder extends Seeder
             "tipo" => 'Cliente',
             "origen" => 'IngeniaSI'
         ]);
+        Usuario::factory()->create([
+            "correo" => 'hector.galvan@ingeniasi.com',
+            "nombres" => 'Hector',
+            "apellidos" => 'Galvan',
+            "tipo" => 'Cliente',
+            "origen" => 'IngeniaSI'
+        ]);
 
         Usuario::factory()->create([
             "correo" => 'cuahutemoc.aguilar@ingeniasi.com',

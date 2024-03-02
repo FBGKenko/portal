@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class datoGuardado extends Model
 {
+    protected $fillable = ['valor','catalogo_dato_id', 'usuario_id'];
     use HasFactory;
     //un DATO GUARDADO pertenece a un USUARIO
     public function usuario(){

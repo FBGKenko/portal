@@ -30,7 +30,6 @@ Route::middleware(['sesion'])->group(function (){
     Route::get('/principal', [principalController::class, 'index'])->name(('main'));
 
     Route::get('/configuracion', [configuracionController::class, 'index'])->name(('config'));
-    Route::post('/configuracion/cambiar-datos', [configuracionController::class, 'cambiarModuloDatos'])->name(('config.cambiarModulo'));
     Route::post('/configuracion', [configuracionController::class, 'cambiarInfo'])->name(('config.infoP'));
     Route::get('/configuracion-2', [configuracionController::class, 'cambiarPrivacidad'])->name(('config.privacidad'));
     Route::post('/configuracion-2', [configuracionController::class, 'cambiarContra'])->name(('config.cC'));
@@ -38,6 +37,7 @@ Route::middleware(['sesion'])->group(function (){
 
 
     Route::get('/perfil', [perfilController::class, 'index'])->name(('perfil'));
+    Route::post('/perifl/cambiar-datos', [perfilController::class, 'cambiarModuloDatos'])->name(('perfil.cambiarModulo'));
 
 
     Route::get('/Empresas', [seguimientoController::class, 'index'])->name('seguimiento');
@@ -48,6 +48,7 @@ Route::middleware(['sesion'])->group(function (){
     Route::get('/Empresas/cambiandoEstado-{empresa}', [perfilEmpresaController::class, 'cambiarSeguirEmpresa'])->name('cambiarSeguirEmpresa');
 
     Route::get('/seguidores', [seguidoresController::class, 'index'])->name(('seguidores'));
+    Route::post('/seguidores/subir-imagen-{empresa}-{tipoImagen}', [seguidoresController::class, 'actualizarImagen'])->name(('seguidores.actualizarImagen'));
 
     Route::get('/servicios', [listaServiciosController::class, 'index'])->name('serviciosCliente');
 

@@ -80,12 +80,18 @@
         // INICIARLAR LA TABLA
         $(document).ready(function () {
             tablaServiciosFavoritos = $('#tablaServiciosFavoritos').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json',
+                },
                 "ordering": false,
                 "lengthChange": false,
                 "pageLength": 10,
                 "dom":"lrtip"
             });
             tablaNotificaciones = $('#tablaNotificaciones').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json',
+                },
                 "ordering": false,
                 "lengthChange": false,
                 "pageLength": 10,

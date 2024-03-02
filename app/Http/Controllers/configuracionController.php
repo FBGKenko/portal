@@ -125,9 +125,4 @@ class configuracionController extends Controller
             return 2;//cambiar datos privados a Y
         }
     }
-
-    public function cambiarModuloDatos(Request $r){
-        //GUARDAR EN LA BASE DE DATOS EN LA TABLA DATO GUARDADO CON EL USUARIO Y SU VALOR CON UN FOREACH
-        return $r;
-    }
 }

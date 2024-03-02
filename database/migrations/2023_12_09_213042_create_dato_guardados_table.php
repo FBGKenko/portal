@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('dato_guardados', function (Blueprint $table) {
             $table->id();
-            $table->text('valor');
+            $table->text('valor')->nullable();
+            $table->foreignId('usuario_id')->constrained();
             $table->foreignId('catalogo_dato_id')->constrained();
             $table->timestamps();
         });
