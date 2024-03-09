@@ -7,6 +7,7 @@ use App\Models\datoGuardado;
 use App\Models\Empresa;
 use App\Models\grupoDato;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +24,11 @@ class perfilController extends Controller
         $datosGenerales = catalogoDato::where('grupo_dato_id', 1)->get();
         $catalogoDatos = catalogoDato::leftjoin('dato_guardados', 'catalogo_datos.id', '=', 'dato_guardados.catalogo_dato_id')
         ->where('grupo_dato_id', '!=', 1)
-        ->get(['catalogo_datos.grupo_dato_id', 'catalogo_datos.id as catalogoDatoId', 'campoValor', 'valor']);
+        ->Where(function($query){
+            $query->where('usuario_id', session('usuario')->id)
+            ->orWhere('usuario_id', null);
+        })
+        ->get(['usuario_id', 'catalogo_datos.grupo_dato_id', 'catalogo_datos.id as catalogoDatoId', 'campoValor', 'valor', 'opcional']);
         $grupos = grupoDato::where('id', '!=', 1)->get(['id', 'nombre']);
         $gruposYCatalogos = [$grupos, $catalogoDatos];
         $edad = null;
@@ -36,16 +41,33 @@ class perfilController extends Controller
     }
 
     public function cambiarModuloDatos(Request $r){
+        $reglas = [];
+        $mensajes = [];
+        foreach ($r->except('_token', 'idModulo') as $key => $value) {
+            $datoABuscar = catalogoDato::where('campoValor', str_replace('_', ' ', $key))->first();
+            if(isset($datoABuscar)){
+                if(!$datoABuscar->opcional){
+                    $reglas[$key] = 'required';
+                    $mensajes[$key.'.required'] = 'El campo ' . str_replace('_', ' ', $key) . ' es obligatorio';
+                }
+            }
+        }
+        $r->validate($reglas, $mensajes);
+        // $validador = Validator::make($r->all(), $reglas);
+        // if ($validador->fails()) {
+        //     return response()->json(['errors' => $validador->errors()], 422);
+        // }
+
         try {
             DB::beginTransaction();
             foreach ($r->except('_token', 'idModulo') as $key => $value) {
-                $datoABuscar = catalogoDato::where('campoValor', $key)->first();
-                if($datoABuscar){
+                $datoABuscar = catalogoDato::where('campoValor', str_replace('_', ' ', $key))->first();
+                if(isset($datoABuscar)){
                     if((!isset($value) && $datoABuscar->opcional == 1) || isset($value)){
                         $datoPrevioGuardado = datoGuardado::where('catalogo_dato_id', $datoABuscar->id)
                         ->where('usuario_id', session('usuario')->id)
                         ->first();
-                        if($datoPrevioGuardado){
+                        if(Isset($datoPrevioGuardado)){
                             $datoPrevioGuardado->valor = $value;
                             $datoPrevioGuardado->save();
                         }

@@ -43,8 +43,11 @@
                 <div id="servicio_{{$grupo->id}}" class="tabcontent contenedoVisibleServicios" style="display: block;">
                     @foreach ($gruposYCatalogos[1] as $catalogo)
                         @if ($grupo->id == $catalogo->grupo_dato_id)
-                            <span class="fs-5 fw-bold">{{$catalogo->campoValor}}:@if (!$catalogo->opcional)*@endif </span>
+                            <span class="fs-5 fw-bold">{{$catalogo->campoValor}}:@if (!$catalogo->opcional) * @endif </span>
                             <input id="{{$catalogo->campoValor}}" type="text" class="form-control mb-3" value="{{$catalogo->valor}}">
+                            @error(str_replace(' ', '_', $catalogo->campoValor))
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         @endif
                     @endforeach
                 </div>
@@ -52,8 +55,11 @@
                 <div id="servicio_{{$grupo->id}}" class="tabcontent contenedoVisibleServicios">
                     @foreach ($gruposYCatalogos[1] as $catalogo)
                         @if ($grupo->id == $catalogo->grupo_dato_id)
-                            <span class="fs-5 fw-bold">{{$catalogo->campoValor}}:@if (!$catalogo->opcional)*@endif </span>
+                            <span class="fs-5 fw-bold">{{$catalogo->campoValor}}:@if (!$catalogo->opcional) * @endif </span>
                             <input id="{{$catalogo->campoValor}}" type="text" class="form-control mb-3" value="{{$catalogo->valor}}">
+                            @error(str_replace(' ', '_', $catalogo->campoValor))
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         @endif
                     @endforeach
                 </div>
