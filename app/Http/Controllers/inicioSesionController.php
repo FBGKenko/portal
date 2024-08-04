@@ -20,7 +20,7 @@ class inicioSesionController extends Controller
             if(password_verify($r->txtContra, $usuario->clave)){
                 unset($usuario->clave);
                 session(["usuario" => $usuario]);
-                return route('main');
+                return redirect()->route('main');
             }
             return 2;
         }
