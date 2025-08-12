@@ -51,6 +51,9 @@ Route::middleware(['sesion'])->group(function (){
     Route::post('/seguidores/subir-imagen-{empresa}-{tipoImagen}', [seguidoresController::class, 'actualizarImagen'])->name(('seguidores.actualizarImagen'));
 
     Route::get('/servicios', [listaServiciosController::class, 'index'])->name('serviciosCliente');
+    Route::get('/servicios/ver', [listaServiciosController::class, 'verServicio'])->name(('serviciosCliente.verServicio'));
+    Route::post('/servicios/ver', [listaServiciosController::class, 'solicitarServicio'])->name(('serviciosCliente.solicitarServicio'));
+
 
     Route::get('configuracion/matriz-permisos', [matrizPermisosController::class, 'index'])->name('permisos');
     Route::post('configuracion/matriz-permisos', [matrizPermisosController::class, 'cambiarPermiso'])->name('permisos.change');

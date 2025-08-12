@@ -10,7 +10,7 @@
             <img id="logoNegocio" src="{{$urlLogo}}" alt="">
         </article>
         {{-- BOTON DE SEGUIR PAGINA --}}
-        <div>
+        <div style="z-index: 9">
             @if (isset($siguiendo))
             <a href="{{route('cambiarSeguirEmpresa', $empresa->id)}}">
                 <button class="btn btn-primary fs-5 fw-bold">Siguiendo</button>
@@ -64,9 +64,16 @@
                         <h4><span class="fw-bold">Descripción: </span>{{$servicio->descripcion}}</h4>
                         <h4><span class="fw-bold">Datos necesarios: </span>WIP</h4>
                     </div>
-                    <article class="border border-dark border-2 rounded logoNegocio">
 
-                    </article>
+                    <form action="{{ route('serviciosCliente.solicitarServicio') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="idServicio" value="{{ $servicio->id }}">
+                        @if (count($servicio->suscripcionServicio) > 0)
+                            <button type="submit" class="btn btn-success">suscrito</button>
+                        @else
+                            <button type="submit" class="btn btn-primary">Solicitar</button>
+                        @endif
+                    </form>
                 </div>
             </div>
         @endforeach

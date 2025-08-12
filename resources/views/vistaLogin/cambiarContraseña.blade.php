@@ -28,6 +28,7 @@
     </footer>
 @endsection
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('#formCC').submit(function () {
             botonCargardo(["#btnInicio", "#btnLogIn", "#btnCC"], true);
@@ -62,8 +63,15 @@
                         {
                             $('#txtContra1').val("");
                             $('#txtContra2').val("");
-                            swal('Acción exitosa', "Se ha cambiado la contraseña con exito", 'success');
-                            window.location.href = $('#btnCC').attr('name');
+                            Swal.fire(
+                                'Acción exitosa',
+                                'Se ha cambiado la contraseña con éxito',
+                                'success'
+                            ).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = $('#btnCC').attr('name');
+                                }
+                            });
                         },
                         error: function( jqXHR, textStatus, errorThrown ) {
                             if (jqXHR.status === 0) {

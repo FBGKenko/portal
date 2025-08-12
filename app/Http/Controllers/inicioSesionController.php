@@ -22,8 +22,8 @@ class inicioSesionController extends Controller
                 session(["usuario" => $usuario]);
                 return redirect()->route('main');
             }
-            return 2;
+            return redirect()->back()->withInput()->withErrors(['error' => 'Contraseña incorrecta']);
         }
-        return 1;
+        return redirect()->back()->withInput()->withErrors(['error' => 'Usuario no encontrado']);
     }
 }

@@ -33,14 +33,14 @@
             <button class="btn btn-primary my-3 fw-bold">Cambiar permisos</button>
         </a>
         {{-- ACTIVADOR DE MODAL CAMBIAR CONTRASEÑA --}}
-        <h4 class="fs-3 mb-0 fw-bold">¿Deseas cambiar de contraseña?</h4>
-        <button id="cambiarContrasenia" class="btn btn-primary my-3 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">Cambiar la contraseña</button>
+        {{-- <h4 class="fs-3 mb-0 fw-bold">¿Deseas cambiar de contraseña?</h4>
+        <button id="cambiarContrasenia" class="btn btn-primary my-3 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">Cambiar la contraseña</button> --}}
         {{-- BOTONES DE CREAR UN NEGOCIO --}}
-        <div class="">
+        {{-- <div class="">
             <h4 class="fs-3 fw-bold">¿Tienes negocio y lo quieres registrar?</h4>
             <button class="btn btn-primary my-3 fw-bold">Envianos tu solicitud</button>
             <button class="btn btn-primary my-3 fw-bold">Mis Negocios</button>
-        </div>
+        </div> --}}
     </main>
 @endsection
 @push('scripts')

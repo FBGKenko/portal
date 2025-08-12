@@ -1,6 +1,8 @@
 @extends('plantillas.plantillaMain')
 @section('titulo', 'Inicio sesión')
 @section('cuerpo')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <header class="clearfix border border-3 p-3">
         <button id="btnInicio" name="{{route('index')}}" class='btn bg-success bg-gradient text-white
         float-end me-5 fw-bold'>Inicio</button>
@@ -8,11 +10,24 @@
     <main>
         <article class="d-flex justify-content-center">
             <form action="{{route('login.auth')}}" id="formInicio" method="POST" class="col-4 bg-secondary
-                text-center rounded-3 mt-5 p-5 pt-3">
+            text-center rounded-3 mt-5 p-5 pt-3">
+                @error('error')
+                    <script>
+                        Toastify({
+                            text: "Ocurrió un error al procesar la solicitud",
+                            duration: 3000, // 3 segundos
+                            close: true,
+                            gravity: "top", // top o bottom
+                            position: "right", // left, center o right
+                            backgroundColor: "#ff5f6d", // colores de error
+                            stopOnFocus: true // no se cierra al pasar el mouse
+                        }).showToast();
+                    </script>
+                @enderror
                 @csrf
                 <h3 class="fw-bold text-white">INICIO DE SESIÓN</h3>
-                <input type="text" class="col-9 mb-3" placeholder="Correo o Telefono" name="txtCorreo" id="txtCorreo">
-                <input type="password" class="col-9 mb-3" placeholder="Contraseña" name="txtContra" id="txtContra">
+                <input type="text" class="col-9 mb-3" placeholder="Correo o Telefono" name="txtCorreo" id="txtCorreo" value="{{old('txtCorreo', '')}}">
+                <input type="password" class="col-9 mb-3" placeholder="Contraseña" name="txtContra" id="txtContra" value="{{old('txtContra', '')}}">
                 <div class="mx-auto">
                     <label class="container col-6 text-white">Mostrar contraseña
                         <input type="checkbox" id="cbMostrarContra">

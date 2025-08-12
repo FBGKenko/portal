@@ -20,14 +20,14 @@ class perfilEmpresaController extends Controller
         $nombre =  str_replace('-', ' ', $razon);
         $empresa = Empresa::where('razonSocial', $nombre)->first();
         if($empresa){
-            $servicios = servicio::where('empresa_id', $empresa->id)->get();
+            $servicios = servicio::with('suscripcionServicio')->where('empresa_id', $empresa->id)->get();
             $siguiendo = seguimiento::where('usuario_id', session('usuario')->id)
             ->where('empresa_id', $empresa->id)
             ->first();
             $urlLogo = Storage::disk('public')->files('/empresas/empresa_'.$empresa->id . '/logo');
             $urlEmpresa = Storage::disk('public')->files('/empresas/empresa_'.$empresa->id . '/portada');
-            $urlLogo = (count($urlLogo) > 0) ? '/storage/'.$urlLogo[0] : '';
-            $urlEmpresa = (count($urlEmpresa) > 0) ? '/storage/'.$urlEmpresa[0] : '';
+            $urlLogo = (count($urlLogo) > 0) ? '/storage/'.$urlLogo[0] : '/img/perfil-default.webp';
+            $urlEmpresa = (count($urlEmpresa) > 0) ? '/storage/'.$urlEmpresa[0] : '/img/portada-default.png';
             return view('vistaSesion.seguimiento.perfilEmpresa',
             compact(
                 'empresa',

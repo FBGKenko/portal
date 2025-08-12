@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\catalogoDato;
 use App\Models\Configuracion;
+use App\Models\datoGuardado;
 use App\Models\Empresa;
 use App\Models\grupoDato;
 use App\Models\Permiso;
@@ -14,6 +15,7 @@ use App\Models\servicio;
 use App\Models\Usuario;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,29 +26,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $noEmpresas = 10;
-        $noMinMaxSeguidosPorEmpresa = [0, 10];
-        for ($i=0; $i < $noEmpresas; $i++) {
+        // $noEmpresas = 10;
+        // $noMinMaxSeguidosPorEmpresa = [0, 10];
+        // for ($i=0; $i < $noEmpresas; $i++) {
 
-            $dueño = Usuario::factory()->create([
-                "tipo" => 'Dueño',
-                'origen' => 'Registro nuevo'
-            ]);
-            $Empresa = Empresa::factory()->for(
-                $dueño
-            )->create();
-            $noSeguidoresPorEmpresa = rand($noMinMaxSeguidosPorEmpresa[0], $noMinMaxSeguidosPorEmpresa[1]);
-            $seguidores = Usuario::factory($noSeguidoresPorEmpresa)->create();
-            echo 'Id Dueño: ' . $dueño->id . ",EMPRESA CAMBIO \n";
-            foreach ($seguidores as $seguidor) {
-                echo 'Id Dueño: ' . $dueño->id . ', Id seguidor: ' . $seguidor->id . "\n";
-                $relacion = new seguimiento([
-                    'usuario_id' => $seguidor->id,
-                    'empresa_id' => $Empresa->id
-                ]);
-                $relacion->save();
-            }
-        }
+        //     $dueño = Usuario::factory()->create([
+        //         "tipo" => 'Dueño',
+        //         'origen' => 'Registro nuevo'
+        //     ]);
+        //     $Empresa = Empresa::factory()->for(
+        //         $dueño
+        //     )->create();
+        //     $noSeguidoresPorEmpresa = rand($noMinMaxSeguidosPorEmpresa[0], $noMinMaxSeguidosPorEmpresa[1]);
+        //     $seguidores = Usuario::factory($noSeguidoresPorEmpresa)->create();
+        //     echo 'Id Dueño: ' . $dueño->id . ",EMPRESA CAMBIO \n";
+        //     foreach ($seguidores as $seguidor) {
+        //         echo 'Id Dueño: ' . $dueño->id . ', Id seguidor: ' . $seguidor->id . "\n";
+        //         $relacion = new seguimiento([
+        //             'usuario_id' => $seguidor->id,
+        //             'empresa_id' => $Empresa->id
+        //         ]);
+        //         $relacion->save();
+        //     }
+        // }
 
         //Nuestros usuarios
         $dueñoIngenia = Usuario::factory()->create([
@@ -56,35 +58,15 @@ class DatabaseSeeder extends Seeder
             "tipo" => 'Dueño'
         ]);
 
-        Usuario::factory()->create([
-            "correo" => 'ana.alvarez@ingeniasi.com',
-            "nombres" => 'Ana Cecilia',
-            "apellidos" => 'Alvarez Ortega',
-            "tipo" => 'Cliente',
-            "origen" => 'IngeniaSI'
-        ]);
-        Usuario::factory()->create([
-            "correo" => 'hector.galvan@ingeniasi.com',
-            "nombres" => 'Hector',
-            "apellidos" => 'Galvan',
-            "tipo" => 'Cliente',
-            "origen" => 'IngeniaSI'
-        ]);
-
-        Usuario::factory()->create([
-            "correo" => 'cuahutemoc.aguilar@ingeniasi.com',
-            "nombres" => 'Cuautemoc',
-            "apellidos" => 'Aguilar',
-            "tipo" => 'Cliente',
-        ]);
-
-        Usuario::factory()->create([
+        $usuario = Usuario::factory()->create([
             "correo" => 'emilio.mendoza@ingeniasi.com',
             "nombres" => 'Carlos Emilio',
             "apellidos" => 'Mendoza Sarmiento',
             "tipo" => 'Cliente',
             "origen" => 'IngeniaSI'
         ]);
+        Log::info($dueñoIngenia);
+        Log::info($usuario);
 
         Empresa::factory()->for(
             $dueñoIngenia
@@ -105,103 +87,157 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'Datos Bancarios'
         ]);
 
-
-
-        $datoNuevo = catalogoDato::create([
+        $datoNombres = catalogoDato::create([
             'grupo_dato_id' => $categoriaGeneral->id,
             'campoValor' => 'nombres',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoApellidos = catalogoDato::create([
             'grupo_dato_id' => $categoriaGeneral->id,
             'campoValor' => 'apellidos',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoTelefono = catalogoDato::create([
             'grupo_dato_id' => $categoriaGeneral->id,
             'campoValor' => 'telefono',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoCorreo = catalogoDato::create([
             'grupo_dato_id' => $categoriaGeneral->id,
             'campoValor' => 'correo',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoGenero = catalogoDato::create([
             'grupo_dato_id' => $categoriaGeneral->id,
             'campoValor' => 'genero',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoCumpleanios = catalogoDato::create([
             'grupo_dato_id' => $categoriaGeneral->id,
             'campoValor' => 'cumpleanios',
             'tipoDato' => 'dateTime',
             'opcional' => true
         ]);
 
-        $datoNuevo = catalogoDato::create([
+        $datoCalle = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'calle',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoNumeroExterior = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'numero exterior',
             'tipoDato' => 'int',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoReferencia = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'referencia',
             'tipoDato' => 'string',
             'opcional' => true
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoColonia = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'colonia',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoCodigoPostal = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'codigo postal',
             'tipoDato' => 'int',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoCiudad = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'ciudad',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoEstado = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'estado',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoPais = catalogoDato::create([
             'grupo_dato_id' => $categoriaDomicilio->id,
             'campoValor' => 'pais',
             'tipoDato' => 'string',
         ]);
 
-        $datoNuevo = catalogoDato::create([
+        $datoClave = catalogoDato::create([
             'grupo_dato_id' => $categoriaBancaria->id,
             'campoValor' => 'clave',
             'tipoDato' => 'string',
             'opcional' => true
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoNumeroTarjeta = catalogoDato::create([
             'grupo_dato_id' => $categoriaBancaria->id,
             'campoValor' => 'numero de tarjeta',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoBanco = catalogoDato::create([
             'grupo_dato_id' => $categoriaBancaria->id,
             'campoValor' => 'banco',
             'tipoDato' => 'string',
         ]);
-        $datoNuevo = catalogoDato::create([
+        $datoNombrePropietario = catalogoDato::create([
             'grupo_dato_id' => $categoriaBancaria->id,
             'campoValor' => 'nombre propietario',
             'tipoDato' => 'string',
             'opcional' => true
+        ]);
+
+
+
+        datoGuardado::create([
+            'valor' => $dueñoIngenia->nombres,
+            'usuario_id' => $dueñoIngenia->id,
+            'catalogo_dato_id' => $datoNombres->id
+        ]);
+        datoGuardado::create([
+            'valor' => $dueñoIngenia->apellidos,
+            'usuario_id' => $dueñoIngenia->id,
+            'catalogo_dato_id' => $datoApellidos->id
+        ]);
+        datoGuardado::create([
+            'valor' => $dueñoIngenia->telefono,
+            'usuario_id' => $dueñoIngenia->id,
+            'catalogo_dato_id' => $datoTelefono->id
+        ]);
+        datoGuardado::create([
+            'valor' => $dueñoIngenia->correo,
+            'usuario_id' => $dueñoIngenia->id,
+            'catalogo_dato_id' => $datoCorreo->id
+        ]);
+        datoGuardado::create([
+            'valor' => $dueñoIngenia->cumpleanios,
+            'usuario_id' => $dueñoIngenia->id,
+            'catalogo_dato_id' => $datoCumpleanios->id
+        ]);
+
+
+
+        datoGuardado::create([
+            'valor' => $usuario->nombres,
+            'usuario_id' => $usuario->id,
+            'catalogo_dato_id' => $datoNombres->id
+        ]);
+        datoGuardado::create([
+            'valor' => $usuario->apellidos,
+            'usuario_id' => $usuario->id,
+            'catalogo_dato_id' => $datoApellidos->id
+        ]);
+        datoGuardado::create([
+            'valor' => $usuario->telefono,
+            'usuario_id' => $usuario->id,
+            'catalogo_dato_id' => $datoTelefono->id
+        ]);
+        datoGuardado::create([
+            'valor' => $usuario->correo,
+            'usuario_id' => $usuario->id,
+            'catalogo_dato_id' => $datoCorreo->id
+        ]);
+        datoGuardado::create([
+            'valor' => $usuario->cumpleanios,
+            'usuario_id' => $usuario->id,
+            'catalogo_dato_id' => $datoCumpleanios->id
         ]);
     }
 }

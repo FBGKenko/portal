@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class suscripcionServicio extends Model
 {
     use HasFactory;
+    protected $fillable = ['servicio_id', 'usuario_id'];
     //Una SUSCRIPCION DE SERVICIO pertenece a un SERVICIO
     public function servicio(){
         return $this->belongsTo(servicio::class);

@@ -15,21 +15,28 @@ class perfilController extends Controller
 {
     public function index()
     {
+        //PASAR MENSAJE FLASH
         $mensajeFlash = null;
-        if(session()->has('modalFlash')){
-            $mensajeFlash = session('modalFlash');
-        }
-        $empresa = Empresa::where('usuario_id', session('usuario')->id)->first();
-        //PENDIENTE POR IMPLEMENTAR LOS DATOS GENERALES EN EL CATALOGO DATO
-        $datosGenerales = catalogoDato::where('grupo_dato_id', 1)->get();
-        $catalogoDatos = catalogoDato::leftjoin('dato_guardados', 'catalogo_datos.id', '=', 'dato_guardados.catalogo_dato_id')
-        ->where('grupo_dato_id', '!=', 1)
-        ->Where(function($query){
-            $query->where('usuario_id', session('usuario')->id)
-            ->orWhere('usuario_id', null);
-        })
-        ->get(['usuario_id', 'catalogo_datos.grupo_dato_id', 'catalogo_datos.id as catalogoDatoId', 'campoValor', 'valor', 'opcional']);
-        $grupos = grupoDato::where('id', '!=', 1)->get(['id', 'nombre']);
+        if(session()->has('modalFlash')) $mensajeFlash = session('modalFlash');
+
+        $datos = DB::table('catalogo_datos')
+            ->leftJoin('dato_guardados', function ($join){
+                $join->on('catalogo_datos.id', '=', 'dato_guardados.catalogo_dato_id')
+                    ->where('dato_guardados.usuario_id', '=', session('usuario')->id);
+            })
+            ->select(
+                'dato_guardados.usuario_id',
+                'catalogo_datos.grupo_dato_id',
+                'catalogo_datos.id as catalogoDatoId',
+                'catalogo_datos.campoValor',
+                'dato_guardados.valor',
+                'catalogo_datos.opcional'
+            )
+            ->get();
+
+        $catalogoDatos = $datos;
+
+        $grupos = grupoDato::get(['id', 'nombre']);
         $gruposYCatalogos = [$grupos, $catalogoDatos];
         $edad = null;
         if (isset(session('usuario')->cumpleanios)){
@@ -37,7 +44,7 @@ class perfilController extends Controller
             $edad = $edad->diff(new \DateTime())->y;
         }
         return view('vistaSesion.configuracion.perfil',
-        compact('empresa', 'gruposYCatalogos', 'datosGenerales', 'edad', 'mensajeFlash'));
+        compact('gruposYCatalogos', 'edad', 'mensajeFlash'));
     }
 
     public function cambiarModuloDatos(Request $r){

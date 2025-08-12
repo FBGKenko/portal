@@ -73,7 +73,7 @@
         @if (isset($mensajeFlash))
             swal( "{{$mensajeFlash[1]}}", "{{$mensajeFlash[0]}}", "{{$mensajeFlash[2]}}");
         @endif
-        var idModulo = 2;
+        var idModulo = 1;
         $('.nav-link').click(function (e) {
             var nombre = $(this).attr('id').split('_');
             idModulo = nombre[1];
