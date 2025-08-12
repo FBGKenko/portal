@@ -15,6 +15,7 @@ use App\Models\servicio;
 use App\Models\Usuario;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
@@ -51,28 +52,38 @@ class DatabaseSeeder extends Seeder
         // }
 
         //Nuestros usuarios
-        $dueñoIngenia = Usuario::factory()->create([
+        $dueñoIngenia = Usuario::create([
             "correo" => 'jesus.ruiz@ingeniasi.com',
             "nombres" => 'Jesus Belizario',
             "apellidos" => 'Ruiz Murillo',
-            "tipo" => 'Dueño'
+            "tipo" => 'Dueño',
+            "telefono" => '6121998600',
+            "clave" => Hash::make("123"),
         ]);
 
-        $usuario = Usuario::factory()->create([
+        $usuario = Usuario::create([
             "correo" => 'emilio.mendoza@ingeniasi.com',
             "nombres" => 'Carlos Emilio',
             "apellidos" => 'Mendoza Sarmiento',
             "tipo" => 'Cliente',
-            "origen" => 'IngeniaSI'
+            "origen" => 'IngeniaSI',
+            "telefono" => '6121412445',
+            "clave" => Hash::make("123"),
         ]);
         Log::info($dueñoIngenia);
         Log::info($usuario);
 
-        Empresa::factory()->for(
-            $dueñoIngenia
-        )->create([
+        Empresa::create([
             'razonSocial' => 'IngeniaSI',
+            'correoEmpresa' => 'contacto@ingeniasi.com',
+            'telefonoEmpresa' => '6121998600',
+            'mision' => 'Brindar soluciones tecnológicas innovadoras.',
+            'vision' => 'Ser líderes en el desarrollo de software a medida.',
+            'giroNegocio' => 'Tecnología',
+            'descripcion' => 'Empresa dedicada al desarrollo de software a medida.',
+            'direccion' => 'Calle Falsa 123',
             'usuario_id' => $dueñoIngenia->id
+
         ]);
 
         $categoriaGeneral = grupoDato::create([
