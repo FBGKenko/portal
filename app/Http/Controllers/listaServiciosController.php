@@ -25,7 +25,8 @@ class listaServiciosController extends Controller
         $servicio = servicio::findOrFail($request->idServicio);
         switch($servicio->nombre) {
             case 'CATALOGO DE DISTRIBUIDORES':
-                $urlBase = 'http://192.168.70.4/';
+                // $urlBase = 'http://192.168.70.4/';
+                $urlBase = 'http://nitrocleanstore.mx/';
                 $urlBaseImagen = $urlBase . 'storage/';
                 $httpClient = new HttpClientService();
                 $response = $httpClient->get($urlBase . 'api/lista-distribuidores');
