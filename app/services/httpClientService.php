@@ -19,6 +19,11 @@ class HttpClientService
         return Http::withHeaders($headers)->get($url, $queryParams);
     }
 
+    public function getHttp(string $url, array $queryParams = [], array $headers = [])
+    {
+        return Http::withoutVerifying()->get($url, $queryParams);
+    }
+
     /**
      * Realiza una petición POST.
      *

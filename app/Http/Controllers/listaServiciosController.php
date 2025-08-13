@@ -26,10 +26,10 @@ class listaServiciosController extends Controller
         switch($servicio->nombre) {
             case 'CATALOGO DE DISTRIBUIDORES':
                 // $urlBase = 'http://192.168.70.4/';
-                $urlBase = 'http://nitrocleanstore.mx/';
+                $urlBase = 'https://nitrocleanstore.mx/';
                 $urlBaseImagen = $urlBase . 'storage/';
                 $httpClient = new HttpClientService();
-                $response = $httpClient->get($urlBase . 'api/lista-distribuidores');
+                $response = $httpClient->getHttp($urlBase . 'api/lista-distribuidores');
                 $data = $response->json();
                 return view('vistaSesion.servicios.externos.catalogoDistribuidores',
                     compact('data', 'urlBase', 'urlBaseImagen'));
